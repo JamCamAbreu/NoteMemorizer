@@ -123,9 +123,18 @@ namespace NoteMemorizer
 
         public static void printTitle()
         {
-            Console.WriteLine("*------------------------------------------------------------------*");
-            Console.WriteLine("|  Note Memorizer | An Educational Project by James Cameron Abreu  |");
-            Console.WriteLine("*------------------------------------------------------------------*");
+            ConsoleColor main = ConsoleColor.Yellow;
+            ConsoleColor secondary = ConsoleColor.DarkYellow;
+
+            WriteColorAlternating("+------------------------------------------------------------------", main, secondary);
+            WriteColor("+\n", main);
+            WriteColor("|  ", secondary);
+            WriteColor("Note Memorizer", main);
+            WriteColor(" | ", secondary);
+            WriteColor("An Educational Project by James Cameron Abreu", main);
+            WriteColor("  |\n", secondary);
+            WriteColorAlternating("+------------------------------------------------------------------", main, secondary);
+            WriteColor("+\n", main);
             Console.WriteLine();
         }
 
@@ -156,14 +165,31 @@ namespace NoteMemorizer
             // HEADER
             string trimmedSectionName = (t.exam.currentSection.topic).Replace(TestTaker.TOPIC_SYMBOL, "");
             int sectionNum = t.exam.currentSection.howManyTotal() - t.exam.currentSection.howManyLeft();
-            Console.Write($"SECTION: ");
-            WriteColor(trimmedSectionName, ConsoleColor.White);
-            Console.Write($" [Question {sectionNum} out of {t.exam.currentSection.howManyTotal()}]");
+
+            int maxSize = 68 - 2;
+
+            int fullStringSize = $"SECTION:{trimmedSectionName} [{sectionNum} out of {t.exam.currentSection.howManyTotal()}]".Count();
+            string dashes = "";
+            for (int i = 0; i < maxSize - fullStringSize - 1; i += 2)
+                dashes += "-";
+
+            bool addDash = (fullStringSize + 2 + dashes.Count() * 2) < 68 ? true : false;
+
+            WriteColor(dashes + " ", ConsoleColor.White);
+            WriteColor($"SECTION:{trimmedSectionName}", ConsoleColor.White);
+            WriteColor($" [", ConsoleColor.White);
+            WriteColor(sectionNum.ToString(), ConsoleColor.Cyan);
+            WriteColor($" out of ", ConsoleColor.White);
+            WriteColor($"{t.exam.currentSection.howManyTotal()}", ConsoleColor.Cyan);
+            WriteColor($"]", ConsoleColor.White);
+            WriteColor(" " + dashes, ConsoleColor.White);
+            if (addDash)
+                WriteColor("-", ConsoleColor.White);
             Console.WriteLine();
 
             // Question
             int questionNum = t.exam.currentQuestion.QuestionNumber;
-            string reviewIndicator = t.exam.currentQuestion.IsReviewQuestion ? "(review)" : "";
+            string reviewIndicator = t.exam.currentQuestion.IsReviewQuestion ? " (review) " : " ";
             if (t.HasPreviousQuestions())
             {
                 Console.Write("<<--- ["); WriteColor("previous", ConsoleColor.DarkCyan); Console.Write("]    ");
@@ -171,7 +197,12 @@ namespace NoteMemorizer
             else
                 Console.Write("                      ");
 
-            Console.Write($"Question {questionNum} {reviewIndicator} out of {t.GetNumQuestionsSession()}: ");
+            Console.Write($"Question ");
+            WriteColor($"{questionNum}", ConsoleColor.Cyan);
+            WriteColor($"{reviewIndicator}", ConsoleColor.Magenta);
+            Console.Write($"out of ");
+            WriteColor($"{t.GetNumQuestionsSession()}", ConsoleColor.Cyan);
+            Console.Write($": ");
 
             if (t.HasForwardQuestions())
             {
@@ -181,8 +212,8 @@ namespace NoteMemorizer
                 Console.Write("\n");
 
             // Questions for Review:
-            Console.Write("                      ");
-            Console.Write($"Questions for Review: [");
+            Console.Write("                    ");
+            Console.Write($"Review Questions: [");
             if (t.exam.NumberQuestionsForReview() > 0)
                 WriteColor(t.exam.NumberQuestionsForReview().ToString(), ConsoleColor.Magenta);
             else
@@ -223,6 +254,11 @@ namespace NoteMemorizer
             if (key == ConsoleKey.Backspace)
             {
                 t.exam.AddReviewQuestion(t.exam.currentQuestion);
+
+                List<string> message = new List<string>();
+                message.Add($"Adding Question for Review");
+                t.exam.StreamString(message.ToArray(), ConsoleColor.Magenta);
+
             }
             if (key == ConsoleKey.Enter && !t.HasForwardQuestions())
             {
@@ -374,6 +410,28 @@ namespace NoteMemorizer
             Console.Write(phrase);
             Console.ResetColor();
         }
+
+        public static void WriteColorAlternating(string phrase, ConsoleColor color1, ConsoleColor color2)
+        {
+            bool mainColor = true;
+            Console.ForegroundColor = color1;
+            foreach (var c in phrase)
+            {
+                Console.Write(c);
+
+                if (mainColor)
+                {
+                    Console.ForegroundColor = color2;
+                    mainColor = false;
+                }
+                else {
+                    Console.ForegroundColor = color1;
+                    mainColor = true;
+                }
+            }
+            Console.ResetColor();
+        }
+
 
     } // end main class
 

@@ -212,10 +212,6 @@ namespace NoteMemorizer
 
             if (reviewQuestions.Count() > 0)
             {
-                List<string> message = new List<string>();
-                message.Add($"Chance Increaser: {chanceIncreaser}");
-                message.Add($"Rolled: {(int)chancePerc} / {minimum} for Review Question next");
-                StreamString(message.ToArray());
             }
 
 
@@ -226,6 +222,10 @@ namespace NoteMemorizer
 
                 q.SetAsReviewQuestion();
                 chanceIncreaser = 1.0; // reset
+
+                List<string> message = new List<string>();
+                message.Add($"Review Question incoming");
+                StreamString(message.ToArray(), ConsoleColor.Magenta);
             }
             else {
                q = _getNewQuestion();
@@ -234,7 +234,7 @@ namespace NoteMemorizer
                 if (reviewQuestions.Count() > 0) {
                     if (chanceIncreaser == 1.0)
                         chanceIncreaser = 5;
-                    else { 
+                    else {
                         chanceIncreaser *= 2.0;
                     }
                 }
@@ -248,10 +248,12 @@ namespace NoteMemorizer
 
 
 
-        public void StreamString(string[] lines)
+        public void StreamString(string[] lines, ConsoleColor color)
         {
             const int CHARACTER_SPEED_MS = 10;
             const int LINE_SPEED_MS = 40;
+            Console.ForegroundColor = color;
+
             foreach (var line in lines)
             {
                 Console.Write("\n");
@@ -265,10 +267,12 @@ namespace NoteMemorizer
 
             for (int i = 0; i < 3; i++)
             {
-                System.Threading.Thread.Sleep(500);
+                System.Threading.Thread.Sleep(250);
                 Console.Write(".");
             }
-            System.Threading.Thread.Sleep(500);
+            System.Threading.Thread.Sleep(300);
+
+            Console.ResetColor();
         }
 
 
