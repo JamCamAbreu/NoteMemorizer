@@ -265,9 +265,9 @@ namespace NoteMemorizer
                 System.Threading.Thread.Sleep(LINE_SPEED_MS);
             }
 
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < 2; i++)
             {
-                System.Threading.Thread.Sleep(250);
+                System.Threading.Thread.Sleep(200);
                 Console.Write(".");
             }
             System.Threading.Thread.Sleep(300);

@@ -55,20 +55,35 @@ namespace NoteMemorizer
             char[] splitSymbols = {' '};
             string[] words = phrase.Split(splitSymbols);
 
+            const int CHAR_SPEED_SLOW = 100;
+
             foreach (var word in words)
             {
                 if (word.Contains(TestTaker.KEYWORD_SYMBOL))
                 {
                     string removeSymbol = word.Replace(TestTaker.KEYWORD_SYMBOL, "");
                     Console.ForegroundColor = color;
-                    Console.Write(removeSymbol);
+
+                    foreach (char c in removeSymbol)
+                    {
+                        System.Threading.Thread.Sleep(CHAR_SPEED_SLOW);
+                        Console.Write(c);
+                    }
+
+                    System.Threading.Thread.Sleep(CHAR_SPEED_SLOW * 2);
                     Console.ResetColor();
                 }
                 else
                 {
-                    Console.Write(word);
+                    foreach (char c in word)
+                    {
+                        System.Threading.Thread.Sleep(CHAR_SPEED_SLOW/5);
+                        Console.Write(c);
+                    }
                 }
+
                 Console.Write(" ");
+                System.Threading.Thread.Sleep(CHAR_SPEED_SLOW/3);
             }
         }
 
