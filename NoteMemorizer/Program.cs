@@ -239,7 +239,6 @@ namespace NoteMemorizer
             // QUESTION
             Console.WriteLine();
             Console.WriteLine();
-            Console.WriteLine();
             t.exam.currentQuestion.WriteSymbolColor(t.exam.currentQuestion.processedQuestion, ConsoleColor.Yellow);
             Console.WriteLine();
             Console.WriteLine("[Press enter to continue]");
