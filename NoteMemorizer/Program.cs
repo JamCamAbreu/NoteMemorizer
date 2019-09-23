@@ -239,7 +239,7 @@ namespace NoteMemorizer
             // QUESTION
             Console.WriteLine();
             Console.WriteLine();
-            t.exam.currentQuestion.WriteSymbolColor(t.exam.currentQuestion.processedQuestion, ConsoleColor.Yellow);
+            t.exam.currentQuestion.WriteStreamColor(t.exam.currentQuestion.processedQuestion, ConsoleColor.Yellow);
             Console.WriteLine();
             Console.WriteLine("[Press enter to continue]");
 
@@ -256,7 +256,7 @@ namespace NoteMemorizer
                 Console.WriteLine();
                 Console.WriteLine("[ANSWER]:");
                 Console.WriteLine();
-                t.exam.currentQuestion.WriteSymbolColor(t.exam.currentQuestion.answer, ConsoleColor.Green);
+                t.exam.currentQuestion.WriteStreamColor(t.exam.currentQuestion.answer, ConsoleColor.Green);
                 Console.WriteLine();
                 Console.WriteLine();
                 Console.WriteLine("Press [Backspace] to review later");

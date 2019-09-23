@@ -246,12 +246,22 @@ namespace NoteMemorizer
         }
 
 
+        public static bool SkipStream()
+        {
+            if (Console.KeyAvailable)
+            {
+                ConsoleKeyInfo k = Console.ReadKey(true);
+                if (k.Key == ConsoleKey.Enter)
+                    return true;
+            }
+            return false;
+        }
 
 
         public void StreamString(string[] lines, ConsoleColor color)
         {
-            const int CHARACTER_SPEED_MS = 10;
-            const int LINE_SPEED_MS = 40;
+            int charSpeed = 10;
+            int lineSpeed = 40;
             Console.ForegroundColor = color;
 
             foreach (var line in lines)
@@ -259,15 +269,19 @@ namespace NoteMemorizer
                 Console.Write("\n");
                 foreach (char c in line)
                 {
-                    System.Threading.Thread.Sleep(CHARACTER_SPEED_MS);
+                    System.Threading.Thread.Sleep(charSpeed);
+                    if (SkipStream()) { charSpeed = 1; lineSpeed = 1; }
                     Console.Write(c);
                 }
-                System.Threading.Thread.Sleep(LINE_SPEED_MS);
+                System.Threading.Thread.Sleep(lineSpeed);
+                if (SkipStream()) { charSpeed = 1; lineSpeed = 1; }
             }
 
-            for (int i = 0; i < 2; i++)
+            int dotSpeed = 100;
+            for (int i = 0; i < 3; i++)
             {
-                System.Threading.Thread.Sleep(200);
+                System.Threading.Thread.Sleep(dotSpeed);
+                if (SkipStream()) { dotSpeed = 1; }
                 Console.Write(".");
             }
             System.Threading.Thread.Sleep(300);

@@ -50,12 +50,12 @@ namespace NoteMemorizer
         }
 
 
-        public void WriteSymbolColor(string phrase, ConsoleColor color)
+        public void WriteStreamColor(string phrase, ConsoleColor color)
         {
             char[] splitSymbols = {' '};
             string[] words = phrase.Split(splitSymbols);
 
-            const int CHAR_SPEED_SLOW = 100;
+            int charSpeed = 80;
 
             foreach (var word in words)
             {
@@ -66,24 +66,28 @@ namespace NoteMemorizer
 
                     foreach (char c in removeSymbol)
                     {
-                        System.Threading.Thread.Sleep(CHAR_SPEED_SLOW);
+                        System.Threading.Thread.Sleep(charSpeed);
+                        if (Exam.SkipStream()) charSpeed = 1;
                         Console.Write(c);
                     }
 
-                    System.Threading.Thread.Sleep(CHAR_SPEED_SLOW * 2);
+                    System.Threading.Thread.Sleep(charSpeed * 2);
+                    if (Exam.SkipStream()) charSpeed = 1;
                     Console.ResetColor();
                 }
                 else
                 {
                     foreach (char c in word)
                     {
-                        System.Threading.Thread.Sleep(CHAR_SPEED_SLOW/5);
+                        System.Threading.Thread.Sleep(charSpeed/4);
+                        if (Exam.SkipStream()) charSpeed = 1;
                         Console.Write(c);
                     }
                 }
 
                 Console.Write(" ");
-                System.Threading.Thread.Sleep(CHAR_SPEED_SLOW/3);
+                if (Exam.SkipStream()) charSpeed = 1;
+                System.Threading.Thread.Sleep(charSpeed/3);
             }
         }
 
