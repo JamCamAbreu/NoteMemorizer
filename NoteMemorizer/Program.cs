@@ -28,6 +28,8 @@ namespace NoteMemorizer
             do
             {
                 printTitle();
+                printWelcome();
+
                 TestTaker t;
                 bool foundFile;
                 do
@@ -40,6 +42,10 @@ namespace NoteMemorizer
                         Console.WriteLine("Please choose a file listed or copy desired text file to 'noteFiles' directory");
                         Console.WriteLine("Press enter to continue...");
                         Console.ReadLine();
+
+                        Console.Clear();
+                        printTitle();
+                        printWelcome();
                     }
                 } while (!foundFile);
 
@@ -102,7 +108,7 @@ namespace NoteMemorizer
             StringBuilder file = new StringBuilder(fileName);
             TestTaker t = new TestTaker();
             askType(t);
-            Console.WriteLine("Loading file...");
+            t.exam.StreamString(new string[] { "Loading file" }, ConsoleColor.Gray);
             if (!fileName.Contains('.'))
             {
                 file.Append(".txt");
@@ -111,12 +117,14 @@ namespace NoteMemorizer
             if (!success)
             {
                 foundFile = false;
-                Console.WriteLine("...failure :(");
+                WriteColor("failure.\n", ConsoleColor.Red);
+                System.Threading.Thread.Sleep(300);
             }
             else
             {
                 foundFile = true;
-                Console.WriteLine("...success!");
+                WriteColor("success!\n", ConsoleColor.Green);
+                System.Threading.Thread.Sleep(300);
             }
             return t;
         }
@@ -138,10 +146,18 @@ namespace NoteMemorizer
             Console.WriteLine();
         }
 
+        public static void printWelcome()
+        {
+            WriteColor("Welcome to Note Memorizer!\n", ConsoleColor.White);
+            WriteColor("Let's begin with a few questions about your test.\n", ConsoleColor.White);
+            Console.WriteLine();
+        }
+
+
         public static void printInstructions()
         {
             Console.WriteLine();
-            Console.WriteLine("Let the learning begin!");
+            WriteColor("Your test will now begin!\n", ConsoleColor.Cyan);
             Console.WriteLine("[Press enter to continue]");
             Console.ReadLine();
         }
@@ -296,6 +312,8 @@ namespace NoteMemorizer
                 Console.Write("Your response: ");
                 answer = Console.ReadLine();
             } while (!answer.ToLower().Contains('y') && !answer.ToLower().Contains('n'));
+
+            Console.Clear();
             if (answer.ToLower().Contains('y')) return true;
             else return false;
         }
@@ -312,7 +330,7 @@ namespace NoteMemorizer
 
         public static void listFileNames(List<string> fileNames, int maxListings)
         {
-            Console.WriteLine("Files loaded in noteFiles directory:");
+            WriteColor("Files found:\n", ConsoleColor.White);
             int it = 1;
             foreach (var name in fileNames)
             {
@@ -330,15 +348,13 @@ namespace NoteMemorizer
 
         public static string askFileName()
         {
-            Console.Clear();
-            printTitle();
+            WriteColor("Please enter the name of the file you would like to use for input\n", ConsoleColor.Yellow);
             List<string> fileNames = getFileNames();
             listFileNames(fileNames, 8);
             string userInput = null;
             do
             {
-                Console.WriteLine("Please enter the name of the file you would like to use for input");
-                Console.Write("File: ");
+                WriteColor("File: ", ConsoleColor.Yellow);
                 userInput = Console.ReadLine();
             } while (string.IsNullOrWhiteSpace(userInput));
             return userInput;
@@ -346,22 +362,30 @@ namespace NoteMemorizer
 
         public static int askHowManyQuestions(TestTaker t)
         {
-            Console.Clear();
-            printTitle();
             Console.WriteLine();
-            Console.WriteLine($"These notes contain {t.exam.totalQuestions} questions.");
-            Console.WriteLine();
-            Console.WriteLine($"How many would you like to practice?");
-            Console.WriteLine($"\t* Press [enter] for all");
-            Console.WriteLine($"\t* Otherwise [enter a number] and press [enter]");
+            Console.Write($"These notes contain ");
+            WriteColor($"{t.exam.totalQuestions}", ConsoleColor.Cyan);
+            Console.WriteLine($" questions.");
+            WriteColor($"How many would you like to practice?\n", ConsoleColor.Yellow);
+
+            ConsoleColor highlight = ConsoleColor.Magenta;
+
+            Console.Write($"\t- Press [");
+            WriteColor($"enter", highlight);
+            Console.Write($"] for all\n");
+
+            Console.Write($"\t- Otherwise [");
+            WriteColor($"enter a number", highlight);
+            Console.Write($"] and press [");
+            WriteColor($"enter", highlight);
+            Console.Write($"]\n");
             Console.WriteLine();
             int num = t.exam.totalQuestions; // default
             string userInput = null;
             bool parseSuccess = true;
             do
             {
-                Console.WriteLine();
-                Console.Write("Your choice: ");
+                WriteColor("Your choice: ", ConsoleColor.Yellow);
                 userInput = Console.ReadLine();
                 if (!string.IsNullOrWhiteSpace(userInput))
                     parseSuccess = int.TryParse(userInput, out num);
@@ -379,23 +403,36 @@ namespace NoteMemorizer
         {
             bool goodKey;
             string key;
+            ConsoleColor titleColor = ConsoleColor.Cyan;
+            ConsoleColor recommendedColor = ConsoleColor.Green;
             Console.WriteLine();
-            Console.WriteLine();
-            Console.WriteLine("Which type of test will you take?");
-            Console.WriteLine("\t[1] Keywords Partial (words indicated in txt file will be partially hidden)");
-            Console.WriteLine("\t[2] Keywords Full Blank (words indicated in txt file will be fully hidden)");
-            Console.WriteLine("\t[3] Keywords First Letters (only first few letters revealed, the rest hidden)");
-            Console.WriteLine("\t[4] Full Random (all words in answer will be randomly hidden)");
-            Console.WriteLine();
+            WriteColor("Which type of test will you take?\n", ConsoleColor.Yellow);
+            Console.Write("\t["); WriteColor("1", titleColor); Console.Write("] ");
+            WriteColor("Keywords Partial", titleColor);
+            Console.Write(" (keywords will be partially hidden)\n");
+
+            Console.Write("\t["); WriteColor("2", titleColor); Console.Write("] ");
+            WriteColor("Keywords Full Blank", titleColor);
+            Console.Write(" (keywords will be fully hidden)\n");
+
+            Console.Write("\t["); WriteColor("3", recommendedColor); Console.Write("] ");
+            WriteColor("Keywords First Letters", recommendedColor);
+            Console.Write(" (only first few letters of keyword revealed)");
+            WriteColor(" -- (Recommended)\n", recommendedColor);
+
+            Console.Write("\t["); WriteColor("4", titleColor); Console.Write("] ");
+            WriteColor("Full Random", titleColor);
+            Console.Write(" (all words in answer will be randomly hidden)\n");
+
             do
             {
-                Console.Write("Your choice: ");
+                WriteColor("Your choice: ", ConsoleColor.Yellow);
                 key = Console.ReadLine();
                 goodKey = (key == "1" || key == "2" || key == "3" || key == "4");
                 if (!goodKey)
                 {
                     Console.WriteLine();
-                    Console.WriteLine("Please provide your choice by entering 1, 2, 3, or 4 on your keyboard");
+                    WriteColor("Please provide your choice by entering 1, 2, 3, or 4 on your keyboard\n", ConsoleColor.Red);
                 }
             } while (!goodKey);
             int keyNum = int.Parse(key);
