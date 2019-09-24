@@ -242,7 +242,8 @@ namespace NoteMemorizer
             // QUESTION
             Console.WriteLine();
             Console.WriteLine();
-            t.exam.currentQuestion.WriteStreamColor(t.exam.currentQuestion.processedQuestion, ConsoleColor.Yellow, t.exam.currentQuestion.shouldRead);
+            bool read = t.exam.currentQuestion.IsReviewQuestion ? true : t.exam.currentQuestion.shouldRead;
+            t.exam.currentQuestion.WriteStreamColor(t.exam.currentQuestion.processedQuestion, ConsoleColor.Yellow, read);
             Console.WriteLine();
             Console.WriteLine("[Press enter to continue]");
 

@@ -99,7 +99,7 @@ namespace NoteMemorizer
             try
             {
                 string[] lines = System.IO.File.ReadAllLines($@"noteFiles\{fileName}");
-                lines = lines.Select(l => l.Replace('\t', ' ')).ToArray();
+                lines = lines.Select(l => l.Replace("\t", "    ")).ToArray();
                 string curSection = "~ Unsorted / Miscellaneous"; // just in case user forgets first section
                 string curQuestion = "";
                 string curAnswer = "";
