@@ -21,6 +21,7 @@ namespace NoteMemorizer
         public string processedQuestion { get; set; }
         const char REPLACE_CHAR = '_';
 
+        public bool shouldRead = true;
 
         public char[] splitSymbols = { ' ', '.', '{', '}', '(', ')', '[', ']', '"', '/', '<', '>', '-' };
 
@@ -50,7 +51,7 @@ namespace NoteMemorizer
         }
 
 
-        public void WriteStreamColor(string phrase, ConsoleColor color)
+        public void WriteStreamColor(string phrase, ConsoleColor color, bool stream)
         {
             char[] splitSymbols = {' '};
             string[] words = phrase.Split(splitSymbols);
@@ -66,29 +67,44 @@ namespace NoteMemorizer
 
                     foreach (char c in removeSymbol)
                     {
-                        System.Threading.Thread.Sleep(charSpeed);
-                        if (Exam.SkipStream()) charSpeed = 1;
+                        if (stream)
+                        {
+                            System.Threading.Thread.Sleep(charSpeed);
+                            if (Exam.SkipStream()) charSpeed = 1;
+                        }
                         Console.Write(c);
                     }
 
-                    System.Threading.Thread.Sleep(charSpeed * 2);
-                    if (Exam.SkipStream()) charSpeed = 1;
+                    if (stream)
+                    {
+                        System.Threading.Thread.Sleep(charSpeed * 2);
+                        if (Exam.SkipStream()) charSpeed = 1;
+                    }
                     Console.ResetColor();
                 }
                 else
                 {
                     foreach (char c in word)
                     {
-                        System.Threading.Thread.Sleep(charSpeed/4);
-                        if (Exam.SkipStream()) charSpeed = 1;
+                        if (stream)
+                        {
+                            System.Threading.Thread.Sleep(charSpeed / 4);
+                            if (Exam.SkipStream()) charSpeed = 1;
+                        }
                         Console.Write(c);
                     }
                 }
 
                 Console.Write(" ");
-                if (Exam.SkipStream()) charSpeed = 1;
-                System.Threading.Thread.Sleep(charSpeed/3);
+
+                if (stream)
+                {
+                    System.Threading.Thread.Sleep(charSpeed / 3);
+                    if (Exam.SkipStream()) charSpeed = 1;
+                }
             }
+
+            this.shouldRead = false;
         }
 
 

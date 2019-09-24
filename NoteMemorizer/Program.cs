@@ -108,12 +108,15 @@ namespace NoteMemorizer
             StringBuilder file = new StringBuilder(fileName);
             TestTaker t = new TestTaker();
             askType(t);
-            t.exam.StreamString(new string[] { "Loading file" }, ConsoleColor.Gray);
+            WriteColor("\tLoading file..", ConsoleColor.White);
             if (!fileName.Contains('.'))
             {
                 file.Append(".txt");
             }
+
+            // Parse the file
             bool success = t.parseFile($"{file}");
+
             if (!success)
             {
                 foundFile = false;
@@ -239,7 +242,7 @@ namespace NoteMemorizer
             // QUESTION
             Console.WriteLine();
             Console.WriteLine();
-            t.exam.currentQuestion.WriteStreamColor(t.exam.currentQuestion.processedQuestion, ConsoleColor.Yellow);
+            t.exam.currentQuestion.WriteStreamColor(t.exam.currentQuestion.processedQuestion, ConsoleColor.Yellow, t.exam.currentQuestion.shouldRead);
             Console.WriteLine();
             Console.WriteLine("[Press enter to continue]");
 
@@ -256,7 +259,7 @@ namespace NoteMemorizer
                 Console.WriteLine();
                 Console.WriteLine("[ANSWER]:");
                 Console.WriteLine();
-                t.exam.currentQuestion.WriteStreamColor(t.exam.currentQuestion.answer, ConsoleColor.Green);
+                t.exam.currentQuestion.WriteStreamColor(t.exam.currentQuestion.answer, ConsoleColor.Green, false);
                 Console.WriteLine();
                 Console.WriteLine();
                 Console.WriteLine("Press [Backspace] to review later");
@@ -384,7 +387,7 @@ namespace NoteMemorizer
             bool parseSuccess = true;
             do
             {
-                WriteColor("Your choice: ", ConsoleColor.Yellow);
+                WriteColor("\tYour choice: ", ConsoleColor.Yellow);
                 userInput = Console.ReadLine();
                 if (!string.IsNullOrWhiteSpace(userInput))
                     parseSuccess = int.TryParse(userInput, out num);
@@ -425,7 +428,8 @@ namespace NoteMemorizer
 
             do
             {
-                WriteColor("Your choice: ", ConsoleColor.Yellow);
+                Console.WriteLine();
+                WriteColor("\tYour choice: ", ConsoleColor.Yellow);
                 key = Console.ReadLine();
                 goodKey = (key == "1" || key == "2" || key == "3" || key == "4");
                 if (!goodKey)

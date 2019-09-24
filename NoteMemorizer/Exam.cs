@@ -210,11 +210,6 @@ namespace NoteMemorizer
             double chancePerc = (100.00 * ((double)QuestionsCompleted / (double)NumberQuestionsThisSession)/2) + chanceIncreaser + reviewQuestions.Count()*3;
             int minimum = randomGenerator.Next(0, 100);
 
-            if (reviewQuestions.Count() > 0)
-            {
-            }
-
-
             if ((asked >= NumberQuestionsThisSession) || (reviewQuestions.Count() > 0 && chancePerc > minimum)) {
                 q = reviewQuestions.Grab();
                 if (q == null)
