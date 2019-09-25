@@ -56,7 +56,8 @@ namespace NoteMemorizer
             char[] splitSymbols = {' '};
             string[] words = phrase.Split(splitSymbols);
 
-            int charSpeed = 80;
+            int normalTextSpeed = 20;
+            int keywordSpeed = 60;
 
             foreach (var word in words)
             {
@@ -69,16 +70,16 @@ namespace NoteMemorizer
                     {
                         if (stream)
                         {
-                            System.Threading.Thread.Sleep(charSpeed);
-                            if (Exam.SkipStream()) charSpeed = 1;
+                            System.Threading.Thread.Sleep(keywordSpeed);
+                            if (Exam.SkipStream()) { keywordSpeed = 1; normalTextSpeed = 1; }
                         }
                         Console.Write(c);
                     }
 
                     if (stream)
                     {
-                        System.Threading.Thread.Sleep(charSpeed * 2);
-                        if (Exam.SkipStream()) charSpeed = 1;
+                        System.Threading.Thread.Sleep(keywordSpeed * 2);
+                        if (Exam.SkipStream()) { keywordSpeed = 1; normalTextSpeed = 1; }
                     }
                     Console.ResetColor();
                 }
@@ -88,8 +89,8 @@ namespace NoteMemorizer
                     {
                         if (stream)
                         {
-                            System.Threading.Thread.Sleep(charSpeed / 4);
-                            if (Exam.SkipStream()) charSpeed = 1;
+                            System.Threading.Thread.Sleep(normalTextSpeed);
+                            if (Exam.SkipStream()) { keywordSpeed = 1; normalTextSpeed = 1; }
                         }
                         Console.Write(c);
                     }
@@ -99,8 +100,8 @@ namespace NoteMemorizer
 
                 if (stream)
                 {
-                    System.Threading.Thread.Sleep(charSpeed / 3);
-                    if (Exam.SkipStream()) charSpeed = 1;
+                    System.Threading.Thread.Sleep(normalTextSpeed);
+                    if (Exam.SkipStream()) { keywordSpeed = 1; normalTextSpeed = 1; }
                 }
             }
 

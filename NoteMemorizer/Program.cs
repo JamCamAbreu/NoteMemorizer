@@ -189,21 +189,34 @@ namespace NoteMemorizer
 
             int fullStringSize = $"SECTION:{trimmedSectionName} [{sectionNum} out of {t.exam.currentSection.howManyTotal()}]".Count();
             string dashes = "";
-            for (int i = 0; i < maxSize - fullStringSize - 1; i += 2)
+            string spaces = "";
+            for (int i = 0; i < maxSize - fullStringSize - 3; i += 2)
+            {
                 dashes += "-";
+                spaces += " ";
+            }
 
-            bool addDash = (fullStringSize + 2 + dashes.Count() * 2) < 68 ? true : false;
+            string sectionBorder = "+";
+            for (int i = 0; i < fullStringSize + 2; i++)
+                sectionBorder += "-";
+            sectionBorder += "+";
 
-            WriteColor(dashes + " ", ConsoleColor.White);
+            bool addDash = (fullStringSize + 4 + dashes.Count() * 2) < 68 ? true : false;
+
+            Console.WriteLine(spaces + sectionBorder);
+
+            WriteColor(dashes + "| ", ConsoleColor.White);
             WriteColor($"SECTION:{trimmedSectionName}", ConsoleColor.White);
             WriteColor($" [", ConsoleColor.White);
             WriteColor(sectionNum.ToString(), ConsoleColor.Cyan);
             WriteColor($" out of ", ConsoleColor.White);
             WriteColor($"{t.exam.currentSection.howManyTotal()}", ConsoleColor.Cyan);
             WriteColor($"]", ConsoleColor.White);
-            WriteColor(" " + dashes, ConsoleColor.White);
+            WriteColor(" |" + dashes, ConsoleColor.White);
             if (addDash)
                 WriteColor("-", ConsoleColor.White);
+            Console.WriteLine();
+            Console.WriteLine(spaces + sectionBorder);
             Console.WriteLine();
 
             // Question
