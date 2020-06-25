@@ -1,0 +1,148 @@
+﻿~ Topic 1: SOLID Design Principles
+
+
+  # The 'S' in SOLID Design Principles stands for...
+    * The ^Single ^Responsibility Principle
+
+  # The 'O' in SOLID Design Principles stands for...
+    * The ^Open-^Closed Principle
+
+  # The 'L' in SOLID Design Principles stands for...
+    * The ^Liskov ^Substitution Principle
+
+  # The 'I' in SOLID Design Principles stands for...
+    * The ^Interface ^Segregation Principle
+
+  # The 'D' in SOLID Design Principles stands for...
+    * The ^Dependency ^Inversion Principle
+
+
+
+  # Within reason, don't give a class more than one general responsibility.
+    * ^Single ^Responsibility Principle
+
+  # Single Responsibility Principle
+    * Within reason, don't give a class more than one general ^responsibility.
+
+  # Single Responsibility Principle
+    * Within reason, don't give a ^class more than one general ^responsibility.
+
+  # Single Responsibility Principle
+    * Example: When writing an implementation for a personal diary, the original
+      implementation used both writing the diary log as well as ^saving it. Instead,
+      a new ^persistance class was implemented and can take in diary logs but designed
+      to persist any other types of objects.
+
+  # Separation of concerns (different classes handling different, independent tasks/problems).
+    This is a theme of what design pattern?
+    * The ^Single ^Responsibility Principle
+
+  # "A class should only have one reason to change."
+    This is a theme of what design pattern?
+    * The ^Single ^Responsibility Principle
+
+
+  # Parts of a system should be OPENED for extension, but CLOSED for modification.
+    * ^Open-^Closed Principle
+
+  # Open-Closed Principle
+    * ^Parts of a system should be ^OPENED for extension, but ^CLOSED for modification.
+
+  # Open-Closed Principle
+    * ^Parts of a system should be OPENED for ^extension, but CLOSED for ^modification.
+
+  # Open-Closed Principle
+    * ^Parts of a system should be ^OPENED for ^extension, but ^CLOSED for ^modification.
+
+  # Make parent classes that use virtual methods and have child classes override those methods
+    * ^Liskov ^Substitution Principle
+
+  # Avoid using the 'new' keyword when defining class methods (in general)
+    * ^Liskov ^Substitution Principle
+
+  # Liskov Substitution Principle
+    * Don't use the ^new keyword. Instead, make parent classes that use ^virtual and have child classes override instead
+
+
+
+
+
+
+  # Building interfaces that are too large forces the people who use the interface to define more than they need
+    * ^Interface ^Segregation Principle
+
+  # Instead of having one big interface, it's better to have numerous smaller interfaces
+    * ^Interface ^Segregation Principle
+
+  # Interfaces can use multiple interfaces itself
+    * ^Interface ^Segregation Principle
+
+  # Using the Decorator Pattern is an example of which principle?
+    * ^Interface ^Segregation Principle
+
+  # Interface Segregation Principle
+    * Building ^interfaces that are too large forces the people who use the interface to define more than they need
+
+  # Interface Segregation Principle
+    * Building ^interfaces that are too ^large forces the people who use the interface to define more than they need
+
+  # Interface Segregation Principle
+    * Instead of having one ^big interface, it's better to have numerous ^smaller interfaces
+
+  # Interface Segregation Principle
+    * Interfaces can use multiple ^interfaces itself
+
+
+
+
+  # High level parts of the system should not depend on low level parts of the system directly,
+    and instead should rely on some kind of abstraction.
+    * ^Dependency ^Inversion Principle
+
+  # Much like object oriented design in general,
+    The ability to change the internals in the system without changing the exposing interface
+    * ^Dependency ^Inversion Principle
+
+  # Dependency Inversion Principle
+    * ^High level parts of the system should not depend on ^low level parts of the system directly,
+      and instead should rely on some kind of ^abstraction.
+
+  # Dependency Inversion Principle
+    * High level parts of the system should not depend on low level parts of the system ^directly,
+      and instead should rely on some kind of ^abstraction.
+
+
+
+
+
+~ Topic: Categories of Design Patterns
+
+  # Gamma Categorization
+    * Design Patterns are typically split into ^three categories
+      This is called Gamma Categorization after Erich Gamma, one of the GoF (Gang of Four) authors
+
+  # Gamma Categorization
+    * Design Patterns are typically split into three categories:
+      1. ^Creational Patterns
+      2. ^Structural Patterns
+      3. ^Behavioral Patterns
+
+
+  # Gamma Categorization
+    * Creational Patterns:
+      - Deal with the creation (construction) of objects
+        - ^Explicit (constructor) vs ^Implicit (Dependency Injection, reflection, etc..) creation
+        - ^Wholesale (single statement) vs ^Piecewise (step by step) creation
+
+
+  # Gamma Categorization
+    * Structural Patterns:
+      - Concerned with the structure (e.g. class members)
+        - Many patterns are ^wrappers that mimic the underlying class' interface
+        - Stress the importance of good ^API design
+
+  # Gamma Categorization
+    * Behavioral Patterns:
+      - They are all ^different; no central theme
+
+

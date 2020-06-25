@@ -1,0 +1,20 @@
+﻿~ Topic 1: Builder Patterns
+
+  #
+    *
+
+
+~ Todo
+  # Topics and questions to add
+    * Chain of Responsibility
+    * Command
+    * Interpreter
+    * Iterator
+    * Mediator
+    * Momento
+    * Null Object
+    * Observer
+    * State
+    * Strategy
+    * Template Method
+    * Visitor

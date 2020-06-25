@@ -1,0 +1,11 @@
+﻿~ Topic 1: Builder Patterns
+
+  #
+    *
+
+
+~ Todo
+  # Topics and questions to add
+    * Factories
+    * Prototypes
+    * Singletons

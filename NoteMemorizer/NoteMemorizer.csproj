@@ -24,6 +24,9 @@
     <None Update="noteFiles\aspnetCert.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="noteFiles\DesignPatterns.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="noteFiles\template.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

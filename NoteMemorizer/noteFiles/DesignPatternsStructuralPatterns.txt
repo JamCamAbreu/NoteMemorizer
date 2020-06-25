@@ -1,0 +1,32 @@
+﻿~ Topic 1:
+
+  # Some objects are simple and can be created in a single constructor call.
+    Other objects require a lot of ceremony to create.
+    Having an object with 10 constructor arguments is not product.
+
+    This is an example of which Design Pattern?
+
+    * ^Builder Pattern
+
+
+  # Builder Pattern
+    * When ^piecewise object construction is complicated,
+      provide an ^API for doing it succinctly
+
+
+  # Builder Pattern
+    * When piecewise object ^construction is complicated,
+      provide an ^API for doing it succinctly
+
+
+
+
+~ Todo
+  # Topics and questions to add
+    * Adapters
+    * Bridges
+    * Composite
+    * Decorators
+    * Facade
+    * Flyweight
+    * Proxy
