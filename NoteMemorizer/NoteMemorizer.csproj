@@ -24,7 +24,16 @@
     <None Update="noteFiles\aspnetCert.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="noteFiles\DesignPatterns.txt">
+    <None Update="noteFiles\DesignPatternsBehavioralPatterns.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="noteFiles\DesignPatternsStructuralPatterns.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="noteFiles\DesignPatternsCreationalPatterns.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="noteFiles\DesignPatternsOverview.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="noteFiles\template.txt">

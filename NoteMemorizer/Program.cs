@@ -366,7 +366,7 @@ namespace NoteMemorizer
         {
             WriteColor("Please enter the name of the file you would like to use for input\n", ConsoleColor.Yellow);
             List<string> fileNames = getFileNames();
-            listFileNames(fileNames, 8);
+            listFileNames(fileNames, 100);
             string userInput = null;
             do
             {
