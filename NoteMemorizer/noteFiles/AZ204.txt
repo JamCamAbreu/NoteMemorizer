@@ -19,11 +19,17 @@
 		* Implement function ^triggers by using data operations, timers, and webhooks
 
 
+	# Which tool or service is this?
+		* ^Azure ^Container ^Registry (ACR) is a managed, private Docker registry service based on the open-source Docker Registry 2.0
+			- Create and maintain ^Azure ^container ^registries to store and manage your private Docker container images
 
+	# Pull images from an Azure container registry to various deployment targets:
+		* Scalable ^orchestration systems that manage containerized applications across clusters of hosts, including Kubernetes, DC/OS, and Docker Swarm.
 
+		* ^Azure ^services that support building and running applications at scale, including Azure Kubernetes Service (AKS), App Service, Batch, Service Fabric, and others
 
-
-
+	# Containers and CI/CD
+		* Developers can target an Azure ^Container ^Registry from a continuous integration and delivery tool such as Azure Pipelines or Jenkins
 
 
 
@@ -43,7 +49,59 @@
 		* Implement ^static website hosting
 
 
+	# BLOB stands for:
+		* ^Binary
+		* ^Large
+		* ^OBject
 
+	# Azure Blob storage is Microsoft's object storage solution for the cloud. 
+		* Blob storage is optimized for storing massive amounts of ^unstructured data. 
+		* ^Unstructured data is data that doesn't adhere to a particular data model or definition, such as text or binary data
+
+	# Blob storage is designed for:
+		* Serving images or documents directly to a browser
+		* Storing files for ^distributed access
+		* ^Streaming video and audio
+		* Writing to log files
+		* Storing data for ^backup and restore, disaster recovery, and archiving
+		* Storing data for ^analysis by an on-premises or Azure-hosted service
+
+	# Users or client applications can access objects in Blob storage via HTTP/HTTPS, from anywhere in the world. 
+		* Objects in Blob storage are accessible via: 
+			- the Azure Storage ^REST API
+			- Azure ^PowerShell
+			- Azure CLI
+			- an Azure Storage client library
+
+	# Blob Storage Accounts: Performance Tiers
+		* ^Standard: This is the general-purpose v2 account and is recommended for most scenarios using Azure Storage
+
+		* ^Premium: offer higher performance by using solid-state drives. 
+			Additionally, you can choose between three account types: 
+				- block blobs
+				- page blobs 
+				- file shares
+
+	# Access Tiers for Blob Storage:
+		* The ^Hot access tier
+			- optimized for FREQUENT access of objects in the storage account
+			- Highest storage costs, but the lowest access costs
+			- New storage accounts are created in this tier by default
+
+		* The ^Cool access tier
+			- optimized for storing large amounts of data that is infrequently accessed and stored for at least 30 days
+			- Lower storage costs and higher access costs
+
+		* The ^Cold access tier
+			- optimized for storing data that is INFREQUENTLY accessed and stored for a minimum of 90 days. 
+			- has lower storage costs and higher access costs compared to the cool tier.
+
+		* The ^Archive tier
+			- optimized for data that can tolerate several hours of retrieval latency and remains in the tier for at least 180 days
+			- the most cost-effective option for storing data
+			- however, ACCESSING that data is more expensive
+
+	
 
 
 
