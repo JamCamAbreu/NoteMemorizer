@@ -1,36 +1,25 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
-    <OutputType>WinExe</OutputType>
-    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
     <ApplicationIcon />
-    <StartupObject />
+    <StartupObject>NoteMemorizer.Program</StartupObject>
     <Platforms>AnyCPU;x64</Platforms>
   </PropertyGroup>
-
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
-
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
-
   <ItemGroup>
     <None Remove="noteFiles\70486.txt" />
   </ItemGroup>
-
   <ItemGroup>
     <None Update="noteFiles\aspnetCert.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="noteFiles\DesignPatternsBehavioralPatterns.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="noteFiles\DesignPatternsStructuralPatterns.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="noteFiles\DesignPatternsCreationalPatterns.txt">
+    <None Update="noteFiles\AZ204.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="noteFiles\DesignPatternsOverview.txt">
@@ -40,5 +29,4 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
-
 </Project>

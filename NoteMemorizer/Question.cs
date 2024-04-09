@@ -56,8 +56,8 @@ namespace NoteMemorizer
             char[] splitSymbols = {' '};
             string[] words = phrase.Split(splitSymbols);
 
-            int normalTextSpeed = 20;
-            int keywordSpeed = 60;
+            int normalTextSleepDuration = 20;
+            int keywordTextSleepDuration = 95;
 
             foreach (var word in words)
             {
@@ -70,16 +70,16 @@ namespace NoteMemorizer
                     {
                         if (stream)
                         {
-                            System.Threading.Thread.Sleep(keywordSpeed);
-                            if (Exam.SkipStream()) { keywordSpeed = 1; normalTextSpeed = 1; }
+                            System.Threading.Thread.Sleep(keywordTextSleepDuration);
+                            if (Exam.SkipStream()) { keywordTextSleepDuration = 0; normalTextSleepDuration = 0; }
                         }
                         Console.Write(c);
                     }
 
                     if (stream)
                     {
-                        System.Threading.Thread.Sleep(keywordSpeed * 2);
-                        if (Exam.SkipStream()) { keywordSpeed = 1; normalTextSpeed = 1; }
+                        System.Threading.Thread.Sleep(keywordTextSleepDuration * 2);
+                        if (Exam.SkipStream()) { keywordTextSleepDuration = 0; normalTextSleepDuration = 0; }
                     }
                     Console.ResetColor();
                 }
@@ -89,8 +89,8 @@ namespace NoteMemorizer
                     {
                         if (stream)
                         {
-                            System.Threading.Thread.Sleep(normalTextSpeed);
-                            if (Exam.SkipStream()) { keywordSpeed = 1; normalTextSpeed = 1; }
+                            System.Threading.Thread.Sleep(normalTextSleepDuration);
+                            if (Exam.SkipStream()) { keywordTextSleepDuration = 0; normalTextSleepDuration = 0; }
                         }
                         Console.Write(c);
                     }
@@ -100,8 +100,8 @@ namespace NoteMemorizer
 
                 if (stream)
                 {
-                    System.Threading.Thread.Sleep(normalTextSpeed);
-                    if (Exam.SkipStream()) { keywordSpeed = 1; normalTextSpeed = 1; }
+                    System.Threading.Thread.Sleep(normalTextSleepDuration);
+                    if (Exam.SkipStream()) { keywordTextSleepDuration = 0; normalTextSleepDuration = 0; }
                 }
             }
 
