@@ -1,7 +1,7 @@
 ~ Topic 1: Develop Azure compute solutions (25% to 30%)
 
 	# You should be able to...IMPLEMENT CONTAINERIZED SOLUTIONS:
-		* Create and manage container ^images for solutions
+		* Create and manage container images for solutions
 		* Publish an image to Azure Container ^Registry
 		* Run containers by using Azure Container ^Instance
 		* Create solutions by using Azure Container ^Apps
@@ -31,7 +31,232 @@
 	# Containers and CI/CD
 		* Developers can target an Azure ^Container ^Registry from a continuous integration and delivery tool such as Azure Pipelines or Jenkins
 
+	# Azure Container Registry is available in multiple service tiers
+		* ^Basic: A cost-optimized entry point for developers learning about Azure Container Registry
+		
+		* ^Standard: increased included storage and image throughput
+			- should satisfy the needs of most production scenarios
+		
+		* ^Premium: highest amount of included storage and concurrent operations
+			- highest image throughput
+			- geo replication
+			- content trust for image tag signing
+			- private endpoints to restrict access
 
+	# Azure Container Registry Features
+		* Azure container registries can include both Windows and ^Linux images.
+		
+	# Azure Container Registry Features
+		* Use Azure ^Container ^Registry ^Tasks to streamline building, testing, pushing, and deploying images in Azure. 
+		* Configure Azure ^Container ^Registry ^Tasks to automate your container OS and framework patching pipeline, and build images automatically when your team commits code to source control.
+
+	# Azure Container Registry Features
+		* ^Encryption-at-^rest (available at all tiers): Azure automatically encrypts an image before storing it, and decrypts it on-the-fly when you or your applications and services pull the image.
+
+	# Azure Container Registry Features
+		* ^Regional ^storage: Azure Container Registry stores data in the region where the registry is created, to help customers meet data residency and compliance requirements.
+		* However, this does not guarentee availability. Customers who wish to have their registry data stored in multiple regions for better performance across different geographies or who wish to have resiliency in the event of a regional outage should enable geo-^replication.
+		
+	# Premium Tier - Azure Container Registry
+		* ^Zone redundancy: A feature of the Premium service tier, ^zone redundancy uses Azure availability zones to replicate your registry to a minimum of three separate zones in each enabled region.
+
+	# Azure Container Registry Features
+		* Scalable ^storage: Azure Container Registry allows you to create as many repositories, images, layers, or tags as you need, up to the registry storage limit.
+
+	# Azure Container Registries
+		* ACR ^Tasks is a suite of features within Azure Container Registry.
+		* It provides ^cloud-based container image building for platforms including Linux, Windows, and Azure Resource Manager, and can automate OS and framework patching for your Docker containers.
+		* It enables ^automated builds triggered by source code updates, updates to a container's base image, or timers.
+		
+	# ACR "Tasks" supports several scenarios to build and maintain container images and other artifacts
+		* ^Quick task - Build and push a single container image to a container registry on-demand, in Azure, without needing a local Docker Engine installation. Think docker build, docker push in the cloud.
+		
+	# ACR "Tasks" supports several scenarios to build and maintain container images and other artifacts
+		* ^Automatically ^triggered tasks - Enable one or more triggers to build an image:
+				- Trigger on source code update
+				- Trigger on base image update
+				- Trigger on a schedule
+	
+	# ACR "Tasks" supports several scenarios to build and maintain container images and other artifacts
+		* ^Multi-step task - Extend the single image build-and-push capability of ACR Tasks with multi-step, multi-container-based workflows
+		
+	# Azure Container Registries "Tasks"
+		* Each ACR Task has an associated source code ^context - the location of a set of source files used to build a container image or other artifact. Example contexts include a Git repository or a local filesystem.
+		
+	# Fill in the following Azure Container Registry question:
+		* By default, ACR Tasks builds images for the ^Linux OS and the amd64 architecture. Specify the --platform tag to build Windows images or Linux images for other architectures
+		
+	# Fill in the following Container question:
+		* A ^Dockerfile is a script that contains a series of instructions that are used to build a Docker image. ^Dockerfiles typically include the following information:
+			- The base or parent image we use to create the new image
+			- Commands to update the base OS and install other software
+			- Build artifacts to include, such as a developed application
+			- Services to expose, such a storage and network configuration
+			- Command to run when the container is launched
+
+	# Exercise: Build and run a container image by using ACR Tasks
+		* Step 1: ^Create an Azure Container Registry inside a new resource group
+			az group create --name myResourceGroup
+											--location northcentralus
+											
+			az acr create --resource-group myResourceGroup
+										--name brockwittrockqaacr 
+										--sku Basic
+						
+		* Step 2: Build and push an ^image from a Docker file
+			az acr build --image sample/hello-world:v1 --registry brockwittrockqaacr --file Dockerfile
+
+		* Step 3: Verify the Results
+			az acr repository --name brockwittrockaz204acr --output table
+
+		* Step 4: ^Run the image in the ACR
+			az acr run --registry brockwittrockaz204acr --cmd ‘$Registry/sample/hello-world:v1’ /dev/null
+
+	# Which tool or service is this?
+		* ^Azure ^Container ^Instances (ACI) is a great solution for any scenario that can operate in isolated containers, including simple applications, task automation, and build jobs.
+			
+			Benefits include:
+				- Fast startup – start containers in Azure in seconds. No need to provision or manage VMs.
+				- Container access – Expose your container groups directly to the internet with an IP address and an FQDN.
+				- Hypervisor-level security – Completely isolate your application the same as it would be in a VM.
+				- Customer data – ACI service stores the minimum customer data required to ensure your container groups are running as expected.
+				- Custom sizes – You can specify custom CPU cores and memory.
+				- Persistent storage – Mount Azure Files shares directly to a container to retrieve and persist state.
+				- Windows and Linux- Support both operating systems using the same API.
+				- Use Azure Kubernetes Service (AKS) for when you need full container orchestration including service discovery across multiple containers, automatic scaling, and coordinated application upgrades.
+
+	# Azure Container Instance (ACI)
+		* ^Container ^groups are the top-level resource in an Azure Container Instance. A collection of containers scheduled on the same host machine. Share lifecycle, resources, local network, and storage volumes. They are like a pod in Kubernetes.
+
+	# Azure Container Instance (ACI)
+		* Only ^Linux containers supported in a multi-container group. ^Windows supports a single container only
+
+	# Azure Container Instance (ACI)
+		* For deployment, use an ^ARM template or ^YAML file. 
+			- ^ARM templates are more useful when you are deploying other resources alongside the container group
+		
+	# Answer the following question about Azure Container Instance container groups:
+		* If you create a container group with two instances, each requesting one CPU, then the container group is allocated ^two (how many?) CPU(s).
+		
+	# Answer the following networking question about Azure Container Instance (ACI)
+		* Container groups ^share an IP address and a port namespace on that IP address. 
+		
+		* To enable external clients to reach a container within the group, you must expose the ^port on the IP address and from the container. (Note: Because containers within the group share a port namespace, port mapping isn't supported.)
+	
+	# Answer the following question about using Azure Container Instance (ACI)
+		* Supported ^storage volumes include Azure file share, Secret, Empty directory, and cloned git repo.
+		
+	# Azure Container Instance (ACI): The shell command to create a container
+		* az ^container create --name mycontainer --resource-group myResourceGroup
+	
+	# Azure Container Instance (ACI): The shell command to create a resource group:
+		* az ^group create --name myResourceGroup --location northcentralus
+
+	# Azure Container Instances (ACI)
+		Use the following command to check the status of your container:
+		* az container ^show --name mycontainer --resource-group myResourceGroup --out table
+		
+	# The "Always" restart-policy for Azure containers 
+		* The Always restart-policy ensures that containers are always restarted, regardless of the ^exit status. 
+		* This policy is the default setting for container groups in Azure Container Instances, and makes sense for long-running tasks such as a web server.
+
+	# Fill in the yaml configuration for a container instance:
+		* name: securetest
+			properties:
+				containers:
+				- name: mycontainer
+					properties:
+						environmentVariables:
+							- name: 'NOTSECRET'
+								^value: 'my-exposed-value'
+							- name: 'SECRET'
+								^secureValue: 'my-secret-value'
+								
+	# Azure Container Instances (ACI)
+		* By default, Azure Container Instances are ^stateless. If the container crashes or stops, all of its ^state is lost.
+			- Tip: To persist ^state beyond the lifetime of the container, you must mount a volume from an external store.
+			
+	# Which tool or service is this?
+		* Azure ^Container ^Apps can help you deploy and manage microservices and containerized apps on a serverless platform that runs on top of Azure Kubernetes Service
+		
+	# Which tool or service is this?
+		* Azure ^Container ^Apps provides the flexibility you need with a serverless container service built for microservice applications and robust autoscaling capabilities without the overhead of managing complex infrastructure
+		
+	# Common uses of Azure Container Apps include:
+		* Deploying API endpoints
+		* Hosting background processing applications
+		* Handling event-driven processing
+		* Running ^microservices
+		
+	# Fill in the following:
+		* Applications built on Azure Container Apps can ^dynamically scale based on: HTTP traffic, event-driven processing, CPU or memory load, and any KEDA-supported scaler
+		
+	# With Azure Container Apps, you can:
+		* Run multiple container revisions and manage the container app's application ^lifecycle.
+		
+		* ^Autoscale your apps based on any KEDA-supported scale trigger. Most applications can scale to zero. (Applications that scale on CPU or memory load can't scale to zero.)
+
+	# With Azure Container Apps, you can:		
+		* Enable HTTPS ^ingress without having to manage other Azure infrastructure.
+
+		* ^Split traffic across multiple versions of an application for Blue/Green deployments and A/B testing scenarios.
+		
+		* Use internal ingress and service discovery for secure internal-only endpoints with built-in DNS-based service discovery.
+
+	# With Azure Container Apps, you can:				
+		* Build ^microservices with Dapr and access its rich set of APIs.
+
+		* Run containers from any registry, public or private, including Docker Hub and Azure Container Registry (ACR).
+		
+		* Use the Azure CLI extension, Azure portal or ^ARM templates to manage your applications.
+		
+	# With Azure Container Apps, you can:					
+		
+		* Provide an existing ^virtual ^network when creating an environment for your container apps.
+		
+		* Securely manage secrets directly in your application.
+		
+		* Monitor logs using Azure Log Analytics.
+		
+
+	# Fill in the following question about Azure Container Apps
+		* Individual container apps are deployed to a single Container Apps ^environment, which acts as a secure boundary around groups of container apps
+
+	# Fill in the following question about Azure Container Apps
+		* Container Apps in the same ^environment are deployed in the same virtual network and write logs to the same Log Analytics workspace
+
+	# Command to install the Azure Container Apps Extension for the CLI
+		* az extension add --name ^containerapp --upgrade
+
+	# Command to create an Azure Container Apps "Environment"
+		* az ^containerapp env create --name myContEnv --resource-group myGroup --location northcentralus
+		
+	# Creating an Azure Container App
+		* By setting --ingress to ^external, you make the container app available to public requests. The command returns a link to access your app
+		
+	# Which tool or service is this?
+		* Azure ^Container ^Apps manages the details of Kubernetes and container orchestration for you. It's containers can use any runtime, programming language, or development stack of your choice
+
+	# Azure Container Apps
+		* You can define multiple containers in a single container app to implement the ^sidecar pattern. 
+			- The containers in a container app share hard disk and network resources and experience the same application lifecycle.
+
+	# Azure Container Apps
+		* You can deploy images hosted on ^private registries by providing credentials in the Container Apps configuration
+		{
+			...
+			"registries": [{
+				"server": "docker.io",
+				"username": "my-registry-user-name",
+				"passwordSecretRef": "my-password-secret-name"
+			}]
+		}
+
+	# Limitations of Azure Container Apps
+		* Azure Container Apps can't run ^privileged containers. If your program attempts to run a process that requires ^root access, the application inside the container experiences a runtime error
+		
+	# Limitations of Azure Container Apps
+		* ^Linux-based (^linux/amd64) container images are required when using Azure Container Apps
 
 
 
@@ -339,7 +564,7 @@
 	# Features of Azure CDN (Content Delivery Networks):
 		* Geo-^filtering enables you to allow or block content in specific countries/regions.
 		* Azure CDN can also accelerate dynamic content, which can't be cached, by using various network optimizations using CDN POPs.
-		* Pre-populate caching in CDNs by using “az cdn endpoint ^load”
+		* Pre-populate caching in CDNs by using “ az cdn endpoint ^load ”
 		* Purge content from your CDNs by using “” or using the PurgeContent method in the Microsoft.Azure.Management.Cdn library in an app implementation.
 
 	# How Azure CDN Functions
