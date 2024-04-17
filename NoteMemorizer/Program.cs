@@ -206,7 +206,8 @@ namespace NoteMemorizer
             Console.WriteLine(spaces + sectionBorder);
 
             WriteColor(dashes + "| ", ConsoleColor.White);
-            WriteColor($"SECTION:{trimmedSectionName}", ConsoleColor.White);
+            WriteColor($"SECTION:", ConsoleColor.Cyan);
+            WriteColor($"{trimmedSectionName}", ConsoleColor.White);
             WriteColor($" [", ConsoleColor.White);
             WriteColor(sectionNum.ToString(), ConsoleColor.Cyan);
             WriteColor($" out of ", ConsoleColor.White);

@@ -19,6 +19,21 @@
     <None Update="noteFiles\aspnetCert.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="noteFiles\AZ204-S1-Compute.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="noteFiles\AZ204-S2-Storage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="noteFiles\AZ204-S3-Security.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="noteFiles\AZ204-S4-Monitor.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="noteFiles\AZ204-S5-Services.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="noteFiles\AZ204.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

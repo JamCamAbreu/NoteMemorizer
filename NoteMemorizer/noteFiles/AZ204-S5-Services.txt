@@ -1,0 +1,15 @@
+~ Topic 5: Connect to and consume Azure services and third-party services (15% to 20%)
+
+	# You should be able to...IMPLEMENT API MANAGEMENT
+		* Create an Azure API Management instance
+		* Create and ^document APIs
+		* Configure access to APIs
+		* Implement ^policies for APIs
+
+	# You should be able to...DEVELOP EVENT-BASED SOLUTIONS
+		* Implement solutions that use Azure Event ^Grid
+		* Implement solutions that use Azure Event ^Hub
+
+	# You should be able to...DEVELOP MESSAGE-BASED SOLUTIONS
+		* Implement solutions that use Azure ^Service ^Bus
+		* Implement solutions that use Azure ^Queue ^Storage queues
