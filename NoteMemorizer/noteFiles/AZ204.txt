@@ -355,6 +355,163 @@
 		* An immutable ^snapshot of a container app version
 
 
+	# Which tool or service is this?
+		* Azure ^App ^Service is an HTTP-based service for hosting web applications, REST APIs, and mobile back ends. You can develop in your favorite programming language or framework. Applications run and scale with ease on both Windows and Linux-based environments.
+
+	# Azure App Service Features
+		* Includes build-in auto ^scale support
+		* ^Scale up/down (vertical; resources) or out/in (horizontal; machines)
+		
+	# Azure App Service Features
+		* The Azure portal provides out-of-the-box ^continuous ^integration and deployment with Azure DevOps Services, GitHub, Bitbucket, FTP, or a local Git repository on your development machine
+
+	# Azure App Service Features
+		* When you deploy your web app you can use a separate ^deployment ^slot instead of the default production ^slot when you're running in the Standard App Service Plan tier or better
+
+	# Azure App Service Deployment Slots
+		* Deployment slots are live apps with their own ^host names
+		
+		* App content and ^configuration elements can be swapped between two deployment slots, including the production slot
+
+	# Azure App Service for Linux
+		* App Service can also host web apps natively on Linux for supported application stacks. 
+		
+		* It can also run custom Linux containers (also known as ^Web ^App for Containers)
+		
+		* App Service on Linux isn't supported on ^Shared pricing tier.
+	
+	# Azure App Service
+		* In App Service, an app always runs in an App Service ^plan. 
+		
+		* An App Service ^plan defines a set of compute resources for a web app to run. 
+		
+		* One or more apps can be configured to run on the same computing resources (or in the same App Service ^plan).
+	
+	# Each App Service plan defines:
+		* Operating System (Windows, Linux)
+		* Region (West US, East US, etc.)
+		* Number of ^VM instances
+		* Size of ^VM instances (Small, Medium, Large)
+		* Pricing tier (Free, Shared, Basic, Standard, Premium, PremiumV2, PremiumV3, Isolated, IsolatedV2)
+	
+	
+	# Azure App Service Plan Pricing Tiers
+		* ^Shared compute: Free and Shared, the two base tiers, runs an app on the same Azure VM as other App Service apps, including apps of other customers. These tiers allocate CPU quotas to each app that runs on the shared resources, and the resources ^can't (can/cannot) scale out.
+
+		* Dedicated compute
+
+		* Isolated
+		
+	# Azure App Service Plan Pricing Tiers
+		* Shared compute
+
+		* Dedicated^ compute: The Basic, Standard, Premium, PremiumV2, and PremiumV3 tiers run apps on dedicated Azure VMs. Only apps in the same App Service ^plan share the same compute resources. The higher the tier, the more VM instances are available to you for scale-out.
+
+		* Isolated
+		
+	# Azure App Service Plan Pricing Tiers
+		* Shared compute
+
+		* Dedicated compute
+
+		* ^Isolated: The ^Isolated and ^IsolatedV2 tiers run dedicated Azure VMs on dedicated Azure Virtual Networks. It provides ^network isolation on top of compute isolation to your apps. It provides the maximum scale-out capabilities.
+
+	# Azure App Service Plan
+		* In the ^Free and ^Shared tiers, an app receives CPU minutes on a shared VM instance and can't scale out.
+
+	# Azure App Service Plan
+		* If the plan is configured for autoscaling, then ^all apps in the plan are scaled out together based on the autoscale settings.
+
+	# Azure APp Service Plan
+		* Your App Service plan can be scaled up and down at any time. It's as simple as changing the ^pricing ^tier of the plan
+
+	# Azure App Service Deployments
+		* Azure supports ^automated deployment directly from several sources. The following options are available:
+			* Azure DevOps Services: You can push your code to Azure DevOps Services, build your code in the cloud, run the tests, generate a release from the code, and finally, push your code to an Azure Web App.
+			
+			* GitHub: Azure supports automated deployment directly from GitHub. When you connect your GitHub repository to Azure for automated deployment, any changes you push to your production branch on GitHub are automatically deployed for you.
+			
+			* Bitbucket: With its similarities to GitHub, you can configure an automated deployment with Bitbucket.
+
+	# Azure App Service Deployments
+		* Here are some options for ^manual deployment of your app:
+
+			* Git: App Service web apps feature a Git URL that you can add as a remote repository. Pushing to the remote repository deploys your app.
+			
+			* CLI: webapp up is a feature of the az command-line interface that packages your app and deploys it. Unlike other deployment methods, az webapp up can create a new App Service web app for you if you haven't already created one.
+			
+			* Zip deploy: Use curl or a similar HTTP utility to send a ZIP of your application files to App Service.
+			
+			* FTP/S: FTP or FTPS is a traditional way of pushing your code to many hosting environments, including App Service.
+
+	# Azure App Service Deployments
+		* Whenever possible, use deployment ^slots when deploying a new production build. 
+		
+		* When using a Standard App Service Plan tier or better, you can deploy your app to a staging environment and then swap your staging and production ^slots.
+
+
+	# Azure App Service Security
+		* Azure App Service provides built-in ^authentication and ^authorization support, so you can sign in users and access data by writing minimal, or no code in your web app, RESTful API, mobile back end, and Azure Functions
+
+		* You're not required to use App Service for ^authentication and ^authorization. Many web frameworks are bundled with security features, and you can use them if you like.
+
+		* You can integrate with multiple login providers. For example, Microsoft Entra ID, Facebook, Google, Twitter.
+
+	# Azure App Service Security
+		* App Service uses ^federated identity, in which a third-party identity provider manages the user identities and authentication flow for you.
+		
+		* Examples include Microsoft Identity Platform, Facebook, Google, Twitter, Any OpenID Connect provider, and Github
+
+		* You can provide your users with any number of these sign-in options.
+
+	# Azure App Service - Built in Authentication and Authorization Module
+		* The authentication and authorization module runs in the same ^sandbox as your application code. 
+		
+		* When it's enabled, every incoming HTTP request passes through it before being handled by your application code.
+
+		* The module can be configured using Azure ^Resource ^Manager settings or using a configuration file
+
+	# Azure App Service - Authorization Behaviors
+		* Allow ^unauthenticated requests: This option defers authorization of unauthenticated traffic to your application code. For authenticated requests, App Service also passes along authentication information in the HTTP headers. This option provides more flexibility in handling anonymous requests. It lets you present multiple sign-in providers to your users.
+
+	# Azure App Service - Authorization Behaviors
+		* ^Require authentication: This option rejects any unauthenticated traffic to your application. This rejection can be a redirect action to one of the configured identity providers. In these cases, a browser client is redirected to /.auth/login/<provider> for the provider you choose. If the anonymous request comes from a native mobile app, the returned response is an HTTP 401 Unauthorized. You can also configure the rejection to be an HTTP 401 Unauthorized or HTTP 403 Forbidden for all requests.
+
+	# Azure App Service Features
+		* App Service provides a built-in ^token ^store, which is a repository of tokens that are associated with the users of your web apps, APIs, or native mobile apps. 
+		
+		* When you enable authentication with any provider, this ^token ^store is immediately available to your app.
+
+	# Azure App Service Features
+		* If you enable application logging, authentication and authorization traces are collected directly in your ^log files. 
+		* If you see an authentication error that you didn't expect, you can conveniently find all the details by looking in your existing application logs.
+
+	# Azure App Service Networking
+		* Azure App Service is a distributed system. The roles that handle incoming HTTP or HTTPS requests are called ^front ^ends. 
+		* The roles that host the customer workload are called ^workers. All the roles in an App Service deployment exist in a multi-tenant network
+
+	# Azure App Service Networking
+		* By default, apps hosted in App Service are accessible directly through the ^internet and can reach only ^internet-hosted endpoints.
+
+
+	# Azure App Service Networking
+		* All the roles in an App Service deployment exist in a ^multi-tenant network. Because there are many different customers in the same App Service scale unit, you can't connect the App Service network directly to your network.
+		
+		* Instead of connecting the networks, you need features to handle the various aspects of application communication.
+
+	# Azure App Service Networking
+		* Azure App Service scale units support many customers in each deployment. 
+			* The ^Free and ^Shared SKU plans host customer workloads on multitenant workers. 
+			* The ^Basic and higher plans host customer workloads that are dedicated to only one App Service plan
+
+	# Azure App Service Networking
+		* If you have a ^Standard App Service plan, all the apps in that plan run on the same worker. 
+		* If you scale out the worker, all the apps in that App Service plan are replicated on a new worker for each instance in your App Service plan.
+
+	# Azure App Service Networking
+		* The outbound addresses used by your app for making outbound calls are listed in the ^properties for your app. These addresses are shared by all the apps running on the same worker VM family in the App Service deployment.
+		
+		
 
 
 ~ Topic 2: Develop for Azure storage (15% to 20%)
@@ -719,3 +876,196 @@
 	# You should be able to...DEVELOP MESSAGE-BASED SOLUTIONS
 		* Implement solutions that use Azure ^Service ^Bus
 		* Implement solutions that use Azure ^Queue ^Storage queues
+		
+		
+	# Which service is this?
+		* Azure ^Event ^Grid is a serverless event broker you can use to integrate applications using events.
+		
+	# Benefits of using Azure Event Grid:
+		* Simplify event consumption
+		
+		* Lower costs by eliminating the need for constant polling
+		
+		* Efficiently and reliably routes events from Azure as well as non-Azure resources and distributes the events to registered subscriber endpoints
+		
+	# Event Grid - Events
+		* Smallest amount of information describing something that happened in the system
+		* There is information common to all events (source, date and time, and unique ID) as well as information unique to the event
+		* The General Availability (GA) SLA allows events up to 64 KB in size. Support for events up to 1MB in size is currently in preview
+		* Events over 64 KB are charged in 64 KB increments
+		
+	# Event Grid - Event Sources
+		* Where the event happened
+		* Responsible for sending (i.e. publishing) events to Event Grid
+		
+	# Event Grid - Topics
+		* Provides the endpoints where an event source sends events
+		* Used for a collection of related events
+		* A source can specify one or more topics
+		* System topics are built-in topics provided by Azure services
+			- You cannot see these in your Azure subscription, but you can subscribe to them by providing information about the resource you want to recieve events from (e.g. Blob Storage)
+		* Custom topics are application and third-party topics
+		* Subscribers decide which topics to subscribe to in order to respond to certain types of events
+		
+	# Event Grid - Subscriptions
+		* Tell Event Grid which events on a topic you're interested in receiving
+		* As a subscriber you provide the endpoint that will recieve (i.e. handle) the events
+		* Optional filters can be supplied to filter events by event type or subject pattern
+		* Subscriptions can be created with expiration date
+		
+	# Event Grid - Event Handlers
+		* The destination to where an event is sent
+		* Takes further action to process the events it receives
+		* There are different types of event handlers including supported Azure services (?) or custom webhooks
+		* Event Grid has different logic in place to guarantee the delivery of an event for the different types of handlers
+		
+	# Event Grid - Event Schemas
+		* 2 Types: Event Grid event schema and Cloud event schema
+		* All events consists of 4 required string properties: subject, eventType, eventTime, and id
+		* The data object has properties specific to the publisher
+		* Event sources sent events to Event Grid in an array consisting of one or more event objects
+			* Each object can be up to 1MB in size, but the total size of the array itself cannot exceed 1 MB
+		* 
+		
+	# Event Grid - Subject Tips
+		* Consider providing the path for where events happened so subscribers can filter and route events by segments of the path
+		* For example if you have a 3-segment path /A/B/C a user can choose to filter by any part of the path depending on whether they want the broad set of events (filtering on /A) or a narrower set of events (filtering on /A/B/C) or something in between (filtering on /A/B)
+		
+	# Event Grid - Cloud Event Schema
+		* CloudEvents is an open specification for describing event data
+		* Natively supported by Azure
+		*
+		
+	# Event Grid - Delivery Durability
+		* Event Grid attempts to deliver each event at least once for each matching subscription immediately
+		* If the event the subscriber does not acknowledge receipt of an event or if there's a failure, Event Grid retries delivery accordingly to a fixed retry schedule and policy
+		* By default, Event Grid delivers 1 event at a time to a subscriber via an array of consisting of just that 1 event
+		* Event Grid does NOT guarantee order of event delivery
+		
+	# Event Grid - Retry Schedule
+		* When Event Grid receives an error for an attempted event delivery it chooses one of the following options based on the type of error:
+			- Retry the delivery
+			- Dead-letter the event (optional configuration)
+			- Drop the event
+			
+		* After 30 seconds from point of attempted delivery, if an endpoint hasn't responded, the message is queued for retry
+		* If the endpoint responds within 3 minutes, Event Grid attempts to remove the event from the retry queue on a best effort basis (i.e. you might get duplicates)
+		* The following endpoint errors will not produce retry attempts by Event Grid:
+			- Azure Resources: 400 Bad Request, 413 Request Entity Too Large, 403 Forbidden
+			- Webhook: 400, 413, 403, 404 Not Found, 401 Unauthorized
+			
+	# Event Grid - Retry Policy
+		* You can customize the retry policy, but only when creating the subscription
+			- Maximum # of Attempts: A value between 1 and 30. Default is 30.
+			- Event TTL (time to live): A value between 1 and 1440. Default is 1440.
+			
+	# Event Grid - Output Batching
+		* You can configure Event Grid to batch events for delivery to improve HTTP performance
+		* Batching is turned off by default
+		* 2 Settings:
+			- Max Events / Batch - A value between 1 and 5000
+			- Preferred Batch Size in KB - Batches that exceed this configured size will still be delivered
+			
+	# Event Grid - Delayed Delivery
+		* As an endpoint experience delivery failures, Event Grid will begin to delay the delivery and retry of events to the endpoint
+		* The purpose is to protect unhealthy endpoints and the Event Grid system itself by reducing unnecessary retries that could potentially overwhelm systems
+		
+	# Event Grid - Dead Letter Events
+		* AN optional process where Event Grid sends undeliverable events to a storage account
+		* EventGrid dead-letters an event when either of the following conditions are met:
+			- Event isn't delivered within the time-to-live period
+			- The number of retries exceeds the limit
+		* Dead lettering is off by default
+		* Configurable at the subscription creation time. The storage account location is where you can pull the undelivered events to resolve the delivery
+		* There is a 5 minute delay between the last attempt to deliver and event and the delivery of that event to the dead letter location
+		* In the event the dead letter location is unavailable for 4 hours, the event is dropped
+		
+	# Event Grid - Custom Delivery Properties
+		* Event subscriptions allow HTTP headers that are included in delivered events
+		* Useful for when a destination requires custom headers
+		* Can set up to 10 custom headers when creating the event subscription with each header not exceeding 4,096 bytes
+		* Can set the custom headers on events delivered to the following destinations:
+			* Webhooks
+			* Azure Service Bus Topics
+			* Azure Event Hubs
+			* Relay Hybrid Connections
+			
+	# Event Grid - Access Controls:
+		* Role																	Description
+		* Event Grid Subscription Reader 				Lets you read Event Grid event subscriptions
+		* Event Grid Subscription Contributor		Lets you manage Event Grid event subscription operations
+		* Event Grid Contributor								Lets you create and manage Event Grid resources
+		* Event Grid Data Sender								Lets you send events to Event Grid topics
+		
+		* If you are using an event handler that isn't a webhook, you need write access to that resource. The permission will differ based on whether the subscription is for a system or custom topic
+	
+	
+	# Event Grid - Using Webhooks
+		* Event Grid requires you to prove ownership of your Webhook endpoint before it will start delivering ends to that endpoint
+		* This validation is handled automatically when using the following 3 Azure Services:
+			* Azure Logic Apps with Event Grid Connector
+			* Azure Automation via Webhook
+			* Azure Functions with Event Grid Trigger
+			
+		* 2 Ways to validate a subscription
+			* Synchronous Handshake: Happens at the time of event subscription creation. An event is sent from EventGrid to your endpoint that includes a validationCode property that your app must verify the request by responding with the same validationCode. Newer versions also support a manual validation method using a validationUrl and GET request. The URL is valid for 5 minutes.
+			
+			* Asynchronous Handshake: Specifically for cases where you can't erturn the ValidationCode using the synchronous handshake. This is often the case when using third-party services (e.g. Zapier)
+			
+			
+	# Event Gird - Filtering
+		* 3 Filtering Options
+			* Event Types
+			* Subject "Begins With" or "End With"
+			* Advanced Fields and Operators
+				* Operator Type - the type of comparison
+				* Key - the field (number, Boolean, or string) in the vent data you're using for filtering
+				* Value(s) - the value(s) to compare to the key
+				
+				
+	# Azure Event Hub
+		* Big data streaming platform and event ingestion service
+		* Lives between event publishers and event consumers
+		
+	# Event Hubs - Key Features:
+		* Fully managed PaaS solution: Essentially Apache Kafka under the hood, but the clusters are managed by Microsoft
+		* Real-time and batch processing - allows concurrent processing of the event stream as well as allows you to control the speed of the event processing
+		* Capture event data - Capture data to Azure Blob Storage or Azure data lake storage
+		* Scalable
+		* Rich ecosystem - any Apache Kafka compatible clients can talk to Event Hubs
+		
+	# Event Hubs - Key Concepts
+		* Event Hubs Client - The interface for developers to interact with the Event Hubs client library
+		* Event Hubs Producer - a type of client that is a source/publisher of log data
+		* Event Hubs Consumer - A type of client that is the consumer of log data. Often have built-in analytics (e.g. Microsoft Stream Analytics)
+		* Partitions - an ordered sequence of events stored in an Event Hub. A way to provide parallel consumption of events. Number of partitions in an Event Hub specified at creation time.
+		* Consumer Group - a veiw of an entire Event Hubs. Specific to each client consumer of the event stream.
+		* Event Recievers - 
+		TODO
+		
+	# Event Hubs - Capture
+		* Specify whether the data is stored in an Azure Blob Storage account and container or an Azure Data Lake Store account
+		* Captured data is written in the Apache Avro binary format (compatible with Hadoop, Stream Analytics, and Azure Data Factory)
+		* You specify a retention period so over time and older data is automatically removed and Event Hubs remains at a manageable size
+		* You set up a minimum size and time (i.e., window) with a "first wins policy"
+		* Each partition captures independently to the specified destination in the following format:
+			{Namespace}/{EventHub}/{PartitionId}/{Year}/{Month}/{Day}/{Hour}/{Minute}/{Second}
+			
+			*Note: this means that one message could end up in multiple partitions
+			
+	# Event Hubs - Throughput Units
+		* Event Hubs traffic controlled by throughput units
+		* A single throughput unit allows 1 MB/second or 1000 events per second of ingress and twice that for egress
+		* Standard SKU allows 1~20 throughput units which a quota increase via a support request
+		* Usage beyond your purchase limit IS throttled by Azure
+		* Egress only applies when utilizing other processing readers such as Stream Analytics or Spark
+		* Once configured, Event Hubs runs automatically when you send your first event and continues to run
+		* Even if there is no incoming data, Event Hubs still writes empty files to let you know it's still working as expected
+		
+	# Ingress vs Egress
+		* Ingress: messages coming into the system
+		* Egress: messages being sent out of the system
+		
+	# Event Hubs - Scale Process Application
+		* To scale your event processing application, you can run multiple instances of the application and have it balance the load among themselves
+		* For the .NET and Java SDK use Event 
