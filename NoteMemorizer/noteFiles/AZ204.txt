@@ -741,6 +741,124 @@
 		* Microsoft ^Graph is the gateway to data and intelligence in Microsoft 365. It provides a unified programmability model that you can use to access the tremendous amount of data in Microsoft 365, Windows 10, and Enterprise Mobility and includes  security features
 
 
+	# Which tool or service is this?
+		* The Microsoft ^identity ^platform for developers is a set of tools that includes authentication service, open-source libraries, and application management tools
+		* Includes three types of service principals and how they relate to application objects
+		* Includes permissions and user consent operate, and how conditional access impacts your application
+
+	# Which tool or service is this?
+		* The Microsoft ^identity ^platform helps you build applications your users and customers can sign in to using their Microsoft identities or social accounts, and provide authorized access to your own APIs or Microsoft APIs like Microsoft Graph.
+
+	# Explore Service Principals:
+		* When you register your application with Microsoft Entra ID, you're creating an identity configuration for your application that allows it to integrate with Microsoft Entra ID.
+		* To delegate Identity and Access Management functions to Microsoft Entra ID, an application must be registered with a Microsoft Entra ^tenant.
+
+	# When you register an app in the Azure portal, you choose whether it is:
+		* ^Single tenant: only accessible in your tenant
+		* ^Multi-tenant: accessible in other tenants
+
+	# Explore Service Principals:
+		* If you register an application in the portal, an application object (the globally unique instance of the app) and a service principal object are automatically created in your home ^tenant.
+		* You also have a globally unique ID for your app (the app or ^client ID)
+
+	# Application Object vs Service Principal
+		* An application object is a ^global template of security configuration for an application registered on the Azure Portal
+		* A service principal is a ^local representation of security configuration to a specific ^tenant (directory) registered on the Azure Portal
+
+	# Application Object for an application registered on the Azure Portal describes:
+		* 1.	How the service can issue ^tokens to access the application
+		* 2.	^Resources the application might need to access
+		* 3.	^Actions the application can take
+
+		* Note: Application objects are the “templates” in which service principals are made. "Service Principals" are the copy of that template specific for a particular tenant.
+
+	# Three types of Service Principals:
+		* Application (service principal): A local copy of the applications Application Object specific to a particular tenant
+		
+		* Managed Identity (service principal): Enabling "Managed Identity" for your application will automatically create a Managed Identity service principal for your application. This co-exists alongside the application service principal for your application. Used for connecting your application to outside resources.
+		
+		* Legacy (service principal): Used to represent applications created before app registrations were introduced.
+	
+	# Access Resources on a Microsoft Entra tenant
+		* To access resources secured by a Microsoft Entra tenant, the entity that requires access must be represented by a security principal. 
+		* This is true for both ^users (^user principal) and ^applications (^service principal).
+
+	# Microsoft Identity Platform Authorization
+		* The Microsoft identity platform implements the ^OAuth 2.0 authorization protocol. 
+
+	# Microsoft Identity Platform Authorization
+		* Any web-hosted resource that integrates with the Microsoft identity platform has a resource identifier, or ^application ^ID URI.
+
+	# Microsoft Identity Platform Authorization
+		* When a resource's functionality is chunked into small permission sets, third-party apps can be built to request only the permissions that they need to perform their function. 
+		
+		* In OAuth 2.0, these types of permission sets are called ^scopes.
+		* They're also often referred to as ^permissions.
+
+	# Microsoft Identity Platform Authorization
+		* In the Microsoft identity platform, a scope/permission is represented as a ^string value.
+
+	# Microsoft Identity Platform Permission Types
+		* 1.	^Delegated Permissions:
+			Used by apps that have a signed-in users
+			The app is ^delegated the permission (aka represents the signed-in user) when it makes a call to the target resource
+
+		* 2.	^App-^Only Access Permissions:
+			Doesn’t represent a user. Instead, it represents a background service or daemon.
+			Only an administrator can consent to ^app-^only access permissions.
+
+	# Microsoft Identity Platform Consent Types
+		* ^Static User Consent
+			You specify up front all the permissions the user would ever need during the users login.
+			User grants any permissions they haven’t consented to immediately on sign in
+
+		* Incremental / Dynamic User Consent
+
+		* Admin Consent
+
+
+	# Microsoft Identity Platform Consent Types
+		* Static User Consent
+
+		* ^Incremental / Dynamic User Consent
+			Only asks for a ^minimum set of permissions up front on user login, and request more overtime as the customer uses more features.
+			Uses ^scopes to define each permission set for features
+			Only applies to delegated permissions, and not to app-only access permissions
+
+		* Admin Consent
+
+	# Microsoft Identity Platform Consent Types
+		* Static User Consent
+
+		* Incremental / Dynamic User Consent
+
+		* ^Admin Consent
+			Provides administrators some control over authorizing apps or users to access highly privileged data
+			Still requires the ^static permissions registered for the app
+
+	# Microsoft Identity Platform Conditional Access
+		* Conditional Access policies at their simplest are ^if-^then statements; ^if a user wants to access a resource, ^then they must complete an action
+
+	# Microsoft Identity Platform Conditional Access
+		* Common Signals
+			* User or group membership (specific users and groups)
+
+			* IP Location information
+				* Trusted IP address ranges
+				* Entire ^countries/regions IP ranges
+
+			* Device
+
+			* Application (attempting to access specific applications can trigger different Conditional Access policies)
+
+			* Real-time and calculated risk detection (^risky users and sign-in behavior)
+
+			* Microsoft Defender for Cloud Apps (sessions can be monitored and controlled in real time)
+
+	
+	# Managed Identities
+		* Internally, managed identities are ^service ^principals of a special type, which are locked to only be used with Azure resources
+
 
 
 
@@ -888,184 +1006,5 @@
 		
 		* Efficiently and reliably routes events from Azure as well as non-Azure resources and distributes the events to registered subscriber endpoints
 		
-	# Event Grid - Events
-		* Smallest amount of information describing something that happened in the system
-		* There is information common to all events (source, date and time, and unique ID) as well as information unique to the event
-		* The General Availability (GA) SLA allows events up to 64 KB in size. Support for events up to 1MB in size is currently in preview
-		* Events over 64 KB are charged in 64 KB increments
-		
-	# Event Grid - Event Sources
-		* Where the event happened
-		* Responsible for sending (i.e. publishing) events to Event Grid
-		
-	# Event Grid - Topics
-		* Provides the endpoints where an event source sends events
-		* Used for a collection of related events
-		* A source can specify one or more topics
-		* System topics are built-in topics provided by Azure services
-			- You cannot see these in your Azure subscription, but you can subscribe to them by providing information about the resource you want to recieve events from (e.g. Blob Storage)
-		* Custom topics are application and third-party topics
-		* Subscribers decide which topics to subscribe to in order to respond to certain types of events
-		
-	# Event Grid - Subscriptions
-		* Tell Event Grid which events on a topic you're interested in receiving
-		* As a subscriber you provide the endpoint that will recieve (i.e. handle) the events
-		* Optional filters can be supplied to filter events by event type or subject pattern
-		* Subscriptions can be created with expiration date
-		
-	# Event Grid - Event Handlers
-		* The destination to where an event is sent
-		* Takes further action to process the events it receives
-		* There are different types of event handlers including supported Azure services (?) or custom webhooks
-		* Event Grid has different logic in place to guarantee the delivery of an event for the different types of handlers
-		
-	# Event Grid - Event Schemas
-		* 2 Types: Event Grid event schema and Cloud event schema
-		* All events consists of 4 required string properties: subject, eventType, eventTime, and id
-		* The data object has properties specific to the publisher
-		* Event sources sent events to Event Grid in an array consisting of one or more event objects
-			* Each object can be up to 1MB in size, but the total size of the array itself cannot exceed 1 MB
-		* 
-		
-	# Event Grid - Subject Tips
-		* Consider providing the path for where events happened so subscribers can filter and route events by segments of the path
-		* For example if you have a 3-segment path /A/B/C a user can choose to filter by any part of the path depending on whether they want the broad set of events (filtering on /A) or a narrower set of events (filtering on /A/B/C) or something in between (filtering on /A/B)
-		
-	# Event Grid - Cloud Event Schema
-		* CloudEvents is an open specification for describing event data
-		* Natively supported by Azure
-		*
-		
-	# Event Grid - Delivery Durability
-		* Event Grid attempts to deliver each event at least once for each matching subscription immediately
-		* If the event the subscriber does not acknowledge receipt of an event or if there's a failure, Event Grid retries delivery accordingly to a fixed retry schedule and policy
-		* By default, Event Grid delivers 1 event at a time to a subscriber via an array of consisting of just that 1 event
-		* Event Grid does NOT guarantee order of event delivery
-		
-	# Event Grid - Retry Schedule
-		* When Event Grid receives an error for an attempted event delivery it chooses one of the following options based on the type of error:
-			- Retry the delivery
-			- Dead-letter the event (optional configuration)
-			- Drop the event
-			
-		* After 30 seconds from point of attempted delivery, if an endpoint hasn't responded, the message is queued for retry
-		* If the endpoint responds within 3 minutes, Event Grid attempts to remove the event from the retry queue on a best effort basis (i.e. you might get duplicates)
-		* The following endpoint errors will not produce retry attempts by Event Grid:
-			- Azure Resources: 400 Bad Request, 413 Request Entity Too Large, 403 Forbidden
-			- Webhook: 400, 413, 403, 404 Not Found, 401 Unauthorized
-			
-	# Event Grid - Retry Policy
-		* You can customize the retry policy, but only when creating the subscription
-			- Maximum # of Attempts: A value between 1 and 30. Default is 30.
-			- Event TTL (time to live): A value between 1 and 1440. Default is 1440.
-			
-	# Event Grid - Output Batching
-		* You can configure Event Grid to batch events for delivery to improve HTTP performance
-		* Batching is turned off by default
-		* 2 Settings:
-			- Max Events / Batch - A value between 1 and 5000
-			- Preferred Batch Size in KB - Batches that exceed this configured size will still be delivered
-			
-	# Event Grid - Delayed Delivery
-		* As an endpoint experience delivery failures, Event Grid will begin to delay the delivery and retry of events to the endpoint
-		* The purpose is to protect unhealthy endpoints and the Event Grid system itself by reducing unnecessary retries that could potentially overwhelm systems
-		
-	# Event Grid - Dead Letter Events
-		* AN optional process where Event Grid sends undeliverable events to a storage account
-		* EventGrid dead-letters an event when either of the following conditions are met:
-			- Event isn't delivered within the time-to-live period
-			- The number of retries exceeds the limit
-		* Dead lettering is off by default
-		* Configurable at the subscription creation time. The storage account location is where you can pull the undelivered events to resolve the delivery
-		* There is a 5 minute delay between the last attempt to deliver and event and the delivery of that event to the dead letter location
-		* In the event the dead letter location is unavailable for 4 hours, the event is dropped
-		
-	# Event Grid - Custom Delivery Properties
-		* Event subscriptions allow HTTP headers that are included in delivered events
-		* Useful for when a destination requires custom headers
-		* Can set up to 10 custom headers when creating the event subscription with each header not exceeding 4,096 bytes
-		* Can set the custom headers on events delivered to the following destinations:
-			* Webhooks
-			* Azure Service Bus Topics
-			* Azure Event Hubs
-			* Relay Hybrid Connections
-			
-	# Event Grid - Access Controls:
-		* Role																	Description
-		* Event Grid Subscription Reader 				Lets you read Event Grid event subscriptions
-		* Event Grid Subscription Contributor		Lets you manage Event Grid event subscription operations
-		* Event Grid Contributor								Lets you create and manage Event Grid resources
-		* Event Grid Data Sender								Lets you send events to Event Grid topics
-		
-		* If you are using an event handler that isn't a webhook, you need write access to that resource. The permission will differ based on whether the subscription is for a system or custom topic
 	
 	
-	# Event Grid - Using Webhooks
-		* Event Grid requires you to prove ownership of your Webhook endpoint before it will start delivering ends to that endpoint
-		* This validation is handled automatically when using the following 3 Azure Services:
-			* Azure Logic Apps with Event Grid Connector
-			* Azure Automation via Webhook
-			* Azure Functions with Event Grid Trigger
-			
-		* 2 Ways to validate a subscription
-			* Synchronous Handshake: Happens at the time of event subscription creation. An event is sent from EventGrid to your endpoint that includes a validationCode property that your app must verify the request by responding with the same validationCode. Newer versions also support a manual validation method using a validationUrl and GET request. The URL is valid for 5 minutes.
-			
-			* Asynchronous Handshake: Specifically for cases where you can't erturn the ValidationCode using the synchronous handshake. This is often the case when using third-party services (e.g. Zapier)
-			
-			
-	# Event Gird - Filtering
-		* 3 Filtering Options
-			* Event Types
-			* Subject "Begins With" or "End With"
-			* Advanced Fields and Operators
-				* Operator Type - the type of comparison
-				* Key - the field (number, Boolean, or string) in the vent data you're using for filtering
-				* Value(s) - the value(s) to compare to the key
-				
-				
-	# Azure Event Hub
-		* Big data streaming platform and event ingestion service
-		* Lives between event publishers and event consumers
-		
-	# Event Hubs - Key Features:
-		* Fully managed PaaS solution: Essentially Apache Kafka under the hood, but the clusters are managed by Microsoft
-		* Real-time and batch processing - allows concurrent processing of the event stream as well as allows you to control the speed of the event processing
-		* Capture event data - Capture data to Azure Blob Storage or Azure data lake storage
-		* Scalable
-		* Rich ecosystem - any Apache Kafka compatible clients can talk to Event Hubs
-		
-	# Event Hubs - Key Concepts
-		* Event Hubs Client - The interface for developers to interact with the Event Hubs client library
-		* Event Hubs Producer - a type of client that is a source/publisher of log data
-		* Event Hubs Consumer - A type of client that is the consumer of log data. Often have built-in analytics (e.g. Microsoft Stream Analytics)
-		* Partitions - an ordered sequence of events stored in an Event Hub. A way to provide parallel consumption of events. Number of partitions in an Event Hub specified at creation time.
-		* Consumer Group - a veiw of an entire Event Hubs. Specific to each client consumer of the event stream.
-		* Event Recievers - 
-		TODO
-		
-	# Event Hubs - Capture
-		* Specify whether the data is stored in an Azure Blob Storage account and container or an Azure Data Lake Store account
-		* Captured data is written in the Apache Avro binary format (compatible with Hadoop, Stream Analytics, and Azure Data Factory)
-		* You specify a retention period so over time and older data is automatically removed and Event Hubs remains at a manageable size
-		* You set up a minimum size and time (i.e., window) with a "first wins policy"
-		* Each partition captures independently to the specified destination in the following format:
-			{Namespace}/{EventHub}/{PartitionId}/{Year}/{Month}/{Day}/{Hour}/{Minute}/{Second}
-			
-			*Note: this means that one message could end up in multiple partitions
-			
-	# Event Hubs - Throughput Units
-		* Event Hubs traffic controlled by throughput units
-		* A single throughput unit allows 1 MB/second or 1000 events per second of ingress and twice that for egress
-		* Standard SKU allows 1~20 throughput units which a quota increase via a support request
-		* Usage beyond your purchase limit IS throttled by Azure
-		* Egress only applies when utilizing other processing readers such as Stream Analytics or Spark
-		* Once configured, Event Hubs runs automatically when you send your first event and continues to run
-		* Even if there is no incoming data, Event Hubs still writes empty files to let you know it's still working as expected
-		
-	# Ingress vs Egress
-		* Ingress: messages coming into the system
-		* Egress: messages being sent out of the system
-		
-	# Event Hubs - Scale Process Application
-		* To scale your event processing application, you can run multiple instances of the application and have it balance the load among themselves
-		* For the .NET and Java SDK use Event 
