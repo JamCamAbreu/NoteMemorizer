@@ -511,7 +511,46 @@
 	# Azure App Service Networking
 		* The outbound addresses used by your app for making outbound calls are listed in the ^properties for your app. These addresses are shared by all the apps running on the same worker VM family in the App Service deployment.
 		
-		
+	# What is Azure Functions?
+	  * Azure Functions is a ^serverless solution that allows you to build robust apps while using less code, and with less infrastructure and lower costs.
+
+	# A ^trigger defines how an Azure function is invoked, and a function must have exactly one ^trigger.
+
+	# In Azure Functions, ^Binding to a function is a way of declaratively connecting your functions to other resources.
+
+	# Which hosting option for Azure Functions provides fully serverless execution where you only pay for execution time?
+	  * The ^Consumption plan
+
+	# What is the purpose of using input and output ^bindings in Azure Functions?
+	  * ^Bindings either pass data into your function (an input ^binding) or enable you to write data out from your function (an output ^binding) by using ^binding parameters.
+
+	# Azure Functions
+	  * Functions integrates directly with Visual Studio, Visual Studio Code, Maven, and other popular development tools to enable seamless ^debugging and deployments
+
+	# Deploying Azure Functions
+	  * Deploy by using your favorite client tool: Visual Studio Code, Visual Studio, or from the command line using Azure Functions Core Tools or the Azure ^CLI.
+	
+	# In Azure Functions, what allows you to avoid hardcoding access to other services?
+	  * ^Triggers and ^bindings let you avoid hardcoding access to other services.
+
+	# In Azure Functions, Which hosting option for Azure Functions keeps instances always-warm for the fastest response times?
+	  *  " ^Event-driven scaling " hosting options range from fully serverless, where you only pay for execution time (Consumption plan), to always-warm instances kept ready for the fastest response times (Premium plan).
+
+	# Question 3: How does autoscale handle scale-out when multiple rules are triggered?
+	  * If more than one scale-out rule is triggered, autoscale scales to the ^highest specified capacity to ensure service availability."
+
+	# When scale-out rules are triggered, autoscale calculates the new capacity determined by the ^scaleAction specified for each of its rules. 
+
+	# When is the ^default profile used in autoscale?
+	  * The ^default profile runs when there are no other applicable profiles for the current date and time
+	  * The ^default profile instance count needs to fall within the Minimum and Maximum instance limits
+
+	# What is the ^cooldown period in autoscale?
+	  * This period is the amount of time to wait after a scale operation before scaling again. 
+	  * The ^cooldown period allows the metrics to stabilize and avoids scaling more than once for the same condition.
+
+	# Calculating thresholds in App Service Autoscale rules
+	  * For percentage based thresholds such as memory usage and CPU usage, the ^average usage of all instances of the app is used to determine if a threshold is reached
 
 
 ~ Topic 2: Develop for Azure storage (15% to 20%)
@@ -524,7 +563,7 @@
 	# You should be able to...DEVELOP SOLUTIONS THAT USE AZURE BLOB STORAGE
 		* Set and retrieve ^properties and metadata
 		* Perform operations on data by using the appropriate SDK
-		* Implement storage ^policies and data ^lifecycle management
+		* Implement storage ^policies and data lifecycle management
 		* Implement ^static website hosting
 
 
@@ -543,7 +582,7 @@
 		* ^Streaming video and audio
 		* Writing to log files
 		* Storing data for ^backup and restore, disaster recovery, and archiving
-		* Storing data for ^analysis by an on-premises or Azure-hosted service
+		* Storing data for analysis by an on-premises or Azure-hosted service
 
 	# Users or client applications can access objects in Blob storage via HTTP/HTTPS, from anywhere in the world. 
 		* Objects in Blob storage are accessible via: 
@@ -579,11 +618,33 @@
 			- optimized for data that can tolerate several hours of retrieval latency and remains in the tier for at least 180 days
 			- the most cost-effective option for storing data
 			- however, ACCESSING that data is more expensive
-
 	
+	# Which command in the Azure Cosmos DB .NET SDK is used to create a new item in a container?
+		* Use the ^CreateItemAsync method of the Container class to create a new item in a container.
 
+	# Which property must be unique within a logical partition for each item in Azure Cosmos DB?
+		* The ^id property is a unique string that is user-settable and must not exceed 255 characters.
 
+	# In Azure Cosmos DB, what is the hierarchical resource model starting from the top level?
+		* An Azure Cosmos DB ^account is a container for databases
+		* Each ^database is a container for containers
+		* Each ^container is a container for items.
 
+	# Which consistency level in Azure Cosmos DB ensures that reads never see uncommitted or partial writes?
+		* he ^Strong consistency level guarantees that reads are consistent with the last write acknowledged by the service.
+
+	# Scalability in Azure Cosmos DB
+		* The ^partition key determines how data is distributed across physical ^partitions in a container. 
+		* It enables efficient scalability by allowing Cosmos DB to distribute data and queries across multiple servers, optimizing performance for large-scale workloads.
+
+	# How can you query items in a Cosmos DB container using the SQL API?
+		* Use the ^QueryItemsAsync method of the Container class in the .NET SDK, passing a SQL query string or a QueryDefinition object to retrieve items matching the query criteria.
+
+	# What is the primary unit of scalability and throughput allocation in Azure Cosmos DB for a container or database?
+		* Azure Cosmos DB uses ^Request ^Units (RUs) as the currency for throughput, representing the cost of read and write operations.
+
+	# Which API in Azure Cosmos DB is optimized for storing and querying JSON documents with a schema-free structure?
+		* The ^Core (SQL) API provides a SQL-like query language for querying JSON documents in a schema-free manner.
 
 
 ~ Topic 3: Implement Azure security (20% to 25%)
@@ -619,8 +680,8 @@
 		* In the portal, you can then add secrets or certificates and scopes to make your app work, customize the branding of your app in the sign-in dialog, and more.
 		
 	# You can also create service principal objects in a tenant using 
-		* Azure ^PowerShell, 
-		* Azure ^CLI, 
+		* Azure ^PowerShell
+		* Azure ^CLI
 		* Microsoft Graph
 		* ...and other tools
 		
@@ -796,7 +857,7 @@
 		* They're also often referred to as ^permissions.
 
 	# Microsoft Identity Platform Authorization
-		* In the Microsoft identity platform, a scope/permission is represented as a ^string value.
+		* In the Microsoft identity platform, a scope/permission is represented as a ^string value (data type).
 
 	# Microsoft Identity Platform Permission Types
 		* 1.	^Delegated Permissions:
@@ -859,6 +920,43 @@
 	# Managed Identities
 		* Internally, managed identities are ^service ^principals of a special type, which are locked to only be used with Azure resources
 
+	# What establishes the identity of a caller when accessing Azure Key Vault?
+		* Authentication is done via Microsoft ^Entra ID.
+
+	# Azure Key Vault Features
+		* ^Soft ^delete is a feature in Azure Key Vault that allows recovery of deleted vaults and vault objects (such as keys, secrets, and certificates).
+
+	# Azure Key Vault Features
+		* Purge protection is an additional layer of protection that prevents the permanent deletion (purging) of ^soft ^deleted Key Vaults or vault objects, even by users with sufficient permissions, until the retention period expires.
+
+	# Difference between Soft Deletes and Purges in Azure Key Vault
+		* Soft deletes remove active objects, but not permanently. They can be recovered within the retention period
+		* Purges are permanent deletes. You can only purge soft-deleted items. It's like emptying your recycling bin. 
+		* Purge ^protection removes the ability to purge, and is off by default
+
+	# Azure Key Vault Features
+		* Azure Key Vault can be used as a ^Key Management solution. Azure Key Vault makes it easy to create and control the encryption ^keys used to encrypt your data.
+
+	# What are the two service tiers available in Azure Key Vault, and what is a key difference between them?
+		* Azure Key Vault has two service tiers: 
+			* ^Standard tier, which encrypts with a software key
+			* ^Premium tier, which includes hardware security module(HSM)-protected keys.
+
+	# Which identity service is responsible for authenticating security principals when accessing Azure Key Vault?
+		* Authentication with Key Vault works in conjunction with Microsoft ^Entra ID, which is responsible for authenticating the identity of any given security principal. 
+
+	# The different kinds of security principals that interact with Azure Key Vault are:User: An individual with a profile in Microsoft Entra ID, representing a human user who can authenticate and access Key Vault resources.
+		* ^Group: A set of users created in Microsoft Entra ID, allowing collective access management for Key Vault operations.
+		* Service Principal: A security identity used by applications or services to access Key Vault, typically identified by an object ID and authenticated using a client secret or certificate.
+		* Managed Identity: An automatically managed identity in Microsoft Entra ID, either system-assigned (tied to a specific Azure resource) or user-assigned (an independent Azure resource), used for secure access to Key Vault without managing credentials.
+
+	# Which form of identity is recommended for applications authenticating to Azure Key Vault?
+		* With a system-assigned ^managed identity for the application, Azure internally manages the application's service principal and automatically authenticates the application with other Azure services. 
+
+	# What authorization mechanisms can be used to control access to data stored in an Azure Key Vault?
+		* Authorization may be done via Azure ^role based access control (Azure RBAC) or Key Vault access policy. 
+		  * Azure RBAC can be used for both management of the ^vaults and to access data stored in a vault
+		  * Key vault access policy can only be used when attempting to access data stored in a vault. 
 
 
 
@@ -883,8 +981,8 @@
 		* All data in Redis exists in ^memory
 
 	# Redis has a very simple structure
-		* ^json strings
-		* "Key": "Value"
+		* Uses ^json format
+		* I.e. uses "Key": "Value" pairs
 		
 	# Which tool can you use to interact with a Redis Cache instance manually?
 		* The ^redis-cli allows you to enter commands and interact with a Redis Cache instance manually
@@ -910,14 +1008,14 @@
 	#  Storing too much in a cookie can have a negative effect on performance as the cookie size grows and is passed and validated with every request.
 		* A typical solution uses the ^cookie as a KEY to query the data in a database
 		* Using an ^in-^memory cache, like Azure Cache for Redis, to associate information with a user is faster than interacting with a full relational database.
-		* This is often called the ^Session ^Store pattern
+		* This is often called the Session Store pattern
 
 	# Applications sometimes require a series of commands against a backend data-store to execute as a single atomic operation
 		* Single atomic operation means that all commands MUST succeed, or all must be rolled back to the initial state
 		* Azure Cache for Redis supports executing a ^batch of commands as a single transaction
 		
 	# Basic tier for Redis cache runs on a single VM. 
-		* This tier has no ^service-^level ^agreement and is ideal for ^development/^test and noncritical workloads
+		* This tier has no ^service-^level ^agreement and is ideal for development/test and noncritical workloads
 		
 	# In general, when choosing Redis Cache tiers, The higher up the tiers you go you get access to higher ^throughput, lower ^latency, better ^availability and more ^features
 		
@@ -947,10 +1045,11 @@
 		* 4. Edge server in ^POP location caches file and returns it to user. ^Time-to-^live (TTL) is specified by the origin server in the HTTP header (Cache-Control), or default to 7 days.
 
 	# When setting Caching Rules, Azure CDN's support two kinds of match conditions:
-		* Path^ match condition: This condition matches the path of the URL, excluding domain name, and supports the wildcard symbol
+		* ^Path match condition: This condition matches the path of the URL, excluding domain name, and supports the wildcard symbol
 			For example, /myfile.html, /my/folder/*, and /my/images/*.jpg
 		
-		* Extension^ match condition: Provide a list of comma delimited file extensions to match.
+		* ^Extension
+		match condition: Provide a list of comma delimited file extensions to match.
 			For example, .jpg, .mp3, .png
 
 	# Azure CDN Caching Rules Priority:
@@ -959,7 +1058,7 @@
 		* If ^custom caching rules exist, they overwrite any other behavior
 
 	# "Fresh" content (Azure CDN concepts)
-		*  A cached resource is considered to be fresh when its ^age is less than the that defined by a cache setting
+		*  A cached resource is considered to be fresh when its age is less than the that defined by a cache setting
 		* Therefore if your content is time-sensitive and you need to ensure accurate updates to the content, then make sure to set your ^time-to-^live to a short duration, or consider including a version string in the asset URL.
 
 	# Azure CDNs (Content Delivery Networks) Use Object Chunking
