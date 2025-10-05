@@ -552,6 +552,23 @@
 	# Calculating thresholds in App Service Autoscale rules
 	  * For percentage based thresholds such as memory usage and CPU usage, the ^average usage of all instances of the app is used to determine if a threshold is reached
 
+	# You plan to create an Azure Functions app named app1.
+	  You need to ensure that app1 will satisfy the following requirements:
+		* Supports automatic scaling.
+		* Has event-based scaling behavior.
+		* Provides a serverless pricing model.
+
+	  Which hosting plan should you use?
+	  * Use the ^Consumption hosting plan
+
+	# Azure Functions Apps
+	  * The ^fan - ^out / ^fan - ^in pattern enables multiple functions to be executed in parallel, waiting for all functions to finish. 
+	  * Often, some aggregation work is done on the results that are returned from the functions. 
+
+	# Azure Function Apps
+	  * Using the ^dynamicThrottlesEnabled property allows developers to let the system respond dynamically to an increased utilization, returning “429 Too Busy” errors. 
+	  * This property is defined in the host.json file. The bindings section, part of the function.json file, is used to define the bindings and triggers for a function.
+
 
 ~ Topic 2: Develop for Azure storage (15% to 20%)
 
@@ -645,6 +662,86 @@
 
 	# Which API in Azure Cosmos DB is optimized for storing and querying JSON documents with a schema-free structure?
 		* The ^Core (SQL) API provides a SQL-like query language for querying JSON documents in a schema-free manner.
+
+	# The blob service is the only Storage Account type that supports ^user delegation shared access signatures.
+	  * A Shared Access Signature (SAS) is a URI that includes a token granting restricted access to specific Azure resources (e.g., a blob, container, file, queue, or table). 
+	  * Why only Blob Service?: Blob Storage supports Azure ^Active ^Directory integration for fine-grained Role-Based Access Control (RBAC)
+	  
+	# A ^Shared ^Access ^Signature (SAS) is a URI that includes a token granting restricted access to specific Azure resources (e.g., a blob, container, file, queue, or table). 
+	  * The ^token in the URI specifies the permissions, resource scope, and validity period, and it is signed with a key to ensure security. 
+	  * SAS allows you to share access to Azure resources without exposing your account’s primary or secondary access keys.
+
+	# Various type of Shared Access Signatures (SAS):
+	  * ^User Delegation SAS (Supported only by Blob Service) is signed with a ^user delegation key, which is derived from an Azure Active Directory (Azure AD) identity (user or managed identity) rather than an account key.
+
+	  * A "Service" SAS is signed with the storage account key, granting access to a specific resource (e.g., a single blob, file, queue, or table).
+
+	  * An "Account" SAS signed with the storage account key, granting access to MULTIPLE resources or services within a storage account. (emphasis on a broader permission scope than service SAS, including access to service-level operations (e.g., listing containers).)
+
+	# Various type of Shared Access Signatures (SAS):
+	  * "User Delegation" SAS (Supported only by Blob Service) is signed with a ^user delegation key, which is derived from an Azure Active Directory (Azure AD) identity (user or managed identity) rather than an account key.
+
+	  * A ^Service SAS is signed with the storage account key, granting access to a specific resource (e.g., a single blob, file, queue, or table).
+
+	  * An "Account" SAS signed with the storage account key, granting access to MULTIPLE resources or services within a storage account. (emphasis on a broader permission scope than service SAS, including access to service-level operations (e.g., listing containers).)
+
+	# Various type of Shared Access Signatures (SAS):
+	  * "User Delegation" SAS (Supported only by Blob Service) is signed with a ^user delegation key, which is derived from an Azure Active Directory (Azure AD) identity (user or managed identity) rather than an account key.
+
+	  * A "Service" SAS is signed with the storage account key, granting access to a specific resource (e.g., a single blob, file, queue, or table).
+
+	  * An ^Account SAS signed with the storage account key, granting access to MULTIPLE resources or services within a storage account. (emphasis on a broader permission scope than service SAS, including access to service-level operations (e.g., listing containers).)
+
+	# Microsoft Entra ID
+	  * OAuth 2.0 ^On - ^Behalf - ^Of flow (OBO) is used when an application invokes a service or web API, which in turn needs to call another service or web API. 
+	  * The idea is to propagate the delegated user identity and permissions through the request chain.
+
+	# In the following shared access signature token code, the 'b' stands for ^blob, and it can also be set to 'c' which stands for ^container
+
+		BlobSasBuilder sasBuilder = new BlobSasBuilder()
+		{
+		  BlobContainerName = containerClient.Name,
+		  Resource = "b"
+		};
+
+		sasBuilder.ExpiresOn = DateTimeOffset.UtcNow.AddHours(1);
+		sasBuilder.SetPermissions(BlobContainerSasPermissions.Read);
+		Uri sasUri = containerClient.GenerateSasUri(sasBuilder);
+
+	# Cosmos DB Consistency levels:
+	  * ^Strong: Ensures all reads reflect the most recent committed writes, with transactional updates ^immediately visible together across all replicas.  
+	  * Bounded Staleness: Reads lag behind writes by a set amount, but transactional updates are visible together within a defined lag.  
+	  * Session: Guarantees transactional updates are visible together within a single client session.  
+	  * Consistent Prefix: Ensures reads see updates in order, with transactional updates visible as a consistent sequence.  
+	  * Eventual: Updates in a transaction are applied together but may not be visible immediately due to eventual propagation across replicas.
+
+	# Cosmos DB Consistency levels:
+	  * Strong: Ensures all reads reflect the most recent committed writes, with transactional updates immediately visible together across all replicas.  
+	  * ^Bounded ^Staleness: Reads lag behind writes by a set amount, but transactional updates are visible together within a defined ^lag.  
+	  * Session: Guarantees transactional updates are visible together within a single client session.  
+	  * Consistent Prefix: Ensures reads see updates in order, with transactional updates visible as a consistent sequence.  
+	  * Eventual: Updates in a transaction are applied together but may not be visible immediately due to eventual propagation across replicas.
+
+	# Cosmos DB Consistency levels:
+	  * Strong: Ensures all reads reflect the most recent committed writes, with transactional updates immediately visible together across all replicas.  
+	  * Bounded Staleness: Reads lag behind writes by a set amount, but transactional updates are visible together within a defined lag.  
+	  * ^Session: Guarantees transactional updates are visible together within a single client ^session.  
+	  * Consistent Prefix: Ensures reads see updates in order, with transactional updates visible as a consistent sequence.  
+	  * Eventual: Updates in a transaction are applied together but may not be visible immediately due to eventual propagation across replicas.
+
+	# Cosmos DB Consistency levels:
+	  * Strong: Ensures all reads reflect the most recent committed writes, with transactional updates immediately visible together across all replicas.  
+	  * Bounded Staleness: Reads lag behind writes by a set amount, but transactional updates are visible together within a defined lag.  
+	  * Session: Guarantees transactional updates are visible together within a single client session.  
+	  * ^Consistent ^Prefix: Ensures reads see updates in order, with transactional updates visible as a consistent ^sequence.  
+	  * Eventual: Updates in a transaction are applied together but may not be visible immediately due to eventual propagation across replicas.
+
+	# Cosmos DB Consistency levels:
+	  * Strong: Ensures all reads reflect the most recent committed writes, with transactional updates immediately visible together across all replicas.  
+	  * Bounded Staleness: Reads lag behind writes by a set amount, but transactional updates are visible together within a defined lag.  
+	  * Session: Guarantees transactional updates are visible together within a single client session.  
+	  * Consistent Prefix: Ensures reads see updates in order, with transactional updates visible as a consistent sequence.  
+	  * ^Eventual: Updates in a transaction are applied together but may not be visible immediately due to ^eventual propagation across replicas.
 
 
 ~ Topic 3: Implement Azure security (20% to 25%)
@@ -958,6 +1055,22 @@
 		  * Azure RBAC can be used for both management of the ^vaults and to access data stored in a vault
 		  * Key vault access policy can only be used when attempting to access data stored in a vault. 
 
+	# Which tool or service is this?
+		* A ^managed identity is an identity that can be assigned to an Azure compute resource or any App hosting platform supported by Azure.
+		* There are two types of ^managed identities: System-assigned and User-assigned.
+
+	# Managed Identities
+		* When you enable a ^system-assigned managed identity: 
+			* A ^service principal of a special type is created in Microsoft Entra ID for the identity. 
+			* The ^service principal is tied to the lifecycle of that Azure resource.
+
+	# Managed Identities
+		* ^User-assigned managed identities can be used by multiple resources. 
+		* You authorize the managed identity to have access to one or more services.
+
+	# How do ^Managed Identities authenticate to services? 
+		* ^Managed identities provide an automatically managed identity in Microsoft Entra ID for applications to use when connecting to resources that support Microsoft Entra authentication. 
+
 
 
 
@@ -1070,9 +1183,28 @@
 		* A ^profile defines the pricing tier for that collection of endpoints
 		* You can only have so many ^profiles in one azure subscription
 
+	# What is the primary function of ^Application ^Insights? 
+		* ^Application ^Insights is an extensible Application Performance Management (APM) service for developers and DevOps professionals to monitor live applications.  
 
+	# What is the role of the ^Instrumentation ^Key in Application Insights? 
+		* The ^Instrumentation ^Key uniquely identifies an Application Insights resource and is used to send telemetry data from an application to the correct resource in Azure.  
 
+	# What is the benefit of using ^Live ^Metrics in Application Insights? 
+		* ^Live ^Metrics provides a near real-time view of application performance, allowing developers to observe metrics and failures as they happen.  
 
+	# A development team is using Application Insights to monitor their web application deployed on Azure. 
+	  They have noticed discrepancies in the reported metrics due to high telemetry volume.
+	  You need to ensure that the reported metrics accurately reflect the application's performance without being affected by telemetry sampling.
+
+	  What should you implement to achieve this goal?
+
+	  * Configure Application Insights to use ^preaggregated standard metrics for dashboarding and real-time alerting.
+
+	# Application Insights
+	  * ^Preaggregated standard metrics are not affected by telemetry sampling and provide accurate real-time data, which makes them suitable for dashboarding and alerting.
+
+	# Application Insights
+	  * Unlike raw telemetry data (e.g., individual request or event logs), ^preaggregated metrics are processed and aggregated on the server side before being stored, making them more efficient for querying and visualization. These metrics are designed to give you quick insights into your application’s health without the overhead of processing large volumes of raw telemetry data.
 
 
 
@@ -1105,5 +1237,49 @@
 		
 		* Efficiently and reliably routes events from Azure as well as non-Azure resources and distributes the events to registered subscriber endpoints
 		
-	
+	# Which tool or service is this?
+        *  Azure ^API ^Management provides a centralized API gateway that enables customers to publish APIs to internal and external developers, and to monitor and protect them at scale.
+
+	# Azure API Management
+        * Azure API Management provides four key components: the ^API ^gateway, the ^management plane, the developer ^portal, and analytics.
+
+	# Azure API Management
+        * The API ^gateway is the client-facing component of API Management that accepts ^API calls and routes them to the backend services.
+
+	# Azure API Management
+        * The ^management plane in Azure API Management provides a web-based user interface for managing APIs and ^users.
+
+	# Azure API Management
+        * The ^developer ^portal in Azure API Management is a website that enables API consumers to learn about and try the APIs.
+
+	# Which tool or service is this?
+		* Azure ^Event ^Grid is a fully managed event routing service that simplifies event-based app development by connecting event sources with event handlers.
+
+	# Which tool or service is this?
+		* Azure ^Event ^Grid enables reactive programming using a publish-subscribe model to route ^events from sources to handlers.
+
+	# Azure Event Grid
+		*  An ^event in Azure Event Grid is a lightweight notification of a condition or state change, containing details like source, type, and time.
+
+	# Azure Event Grid
+		* Azure Event Grid uses ^topics to organize and categorize events, allowing subscribers to receive only relevant notifications.
+
+	# Azure Event Grid
+		* A ^subscription in Azure Event Grid defines which events from a topic are routed to a specific handler or endpoint.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	
