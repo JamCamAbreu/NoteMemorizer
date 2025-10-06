@@ -569,6 +569,32 @@
 	  * Using the ^dynamicThrottlesEnabled property allows developers to let the system respond dynamically to an increased utilization, returning “429 Too Busy” errors. 
 	  * This property is defined in the host.json file. The bindings section, part of the function.json file, is used to define the bindings and triggers for a function.
 
+	# You need to delete an image with the tag dev/nginx:latest from an Azure container registry named devregistry.
+	  Use the following command:
+
+	  * az acr ^repository delete --name devregistry --image dev/nginx:latest
+
+	# Azure Container Instances Vs Apps
+	  * Azure Container ^Apps enables you to build serverless microservices based on containers. It is optimized for running general purpose containers and provides many application-specific concepts on top of containers.
+	  * Azure Container ^Instances does not support scaling, load balancing, revisions, scale, or environments.
+
+	# You develop a web application hosted on the Web Apps feature of Microsoft Azure App Service.
+	  You need to enable and configure Azure Web Service Local Cache with 1.5 GB.
+	  Which two code segments should you use? Each correct answer presents part of the solution.
+
+	  * “WEBSITE_LOCAL_CACHE_SIZEINMB”: “1500”
+	  * “WEBSITE_LOCAL_CACHE_OPTION”: ^“Always”
+
+	# You develop an App Service app hosted on Windows Platform. Users report that the app is failing.
+	  You need to begin troubleshooting the app by inspecting a copy of the page that is returned when the HTTP return code is greater than 400.
+	  Which type of log should you review?
+
+	  * ^detailed ^error log
+	  * The ^detailed ^error log contains copies of the error pages, produced in response to HTTP codes greater than 400, that would have been sent to clients. These pages are not sent due to security reasons.
+
+	# Purchasing an App Service certificate automates the process of requesting, ^renewing, and synchronizing the certificate with the App Service apps that use them
+
+
 
 ~ Topic 2: Develop for Azure storage (15% to 20%)
 
@@ -742,6 +768,28 @@
 	  * Session: Guarantees transactional updates are visible together within a single client session.  
 	  * Consistent Prefix: Ensures reads see updates in order, with transactional updates visible as a consistent sequence.  
 	  * ^Eventual: Updates in a transaction are applied together but may not be visible immediately due to ^eventual propagation across replicas.
+
+	# You are developing an application.
+	  You need to set the standard HTTP properties of containers in Azure Blob Storage.
+	  Which two HTTP properties can you set?
+	  * ^Last - ^Modified
+	  * ^ETag
+
+	# You manage a multiregion deployment of an Azure Cosmos DB account named account1.
+	  You need to configure the default consistency level for account1. The consistency level must maximize throughput and minimize latency for write operations.
+	  Which consistency level should you use?
+
+	  * ^eventual
+	  * The ^eventual consistency level maximizes throughput and minimizes latency.
+
+	# Azure Storage Account Features
+	  * Configuring a ^legal ^hold policy on the container allows the documents to be protected from modifications or deletions until the hold is explicitly cleared.
+
+	# You have blobs in an Azure storage account.
+	  You need to implement a stored access policy that will apply to shared access signatures generated for the blobs.
+	  To which type of storage resource should you associate the policy?
+
+	  * The ^container that is hosting blobs is used for associating the corresponding stored access policies
 
 
 ~ Topic 3: Implement Azure security (20% to 25%)
@@ -1206,7 +1254,11 @@
 	# Application Insights
 	  * Unlike raw telemetry data (e.g., individual request or event logs), ^preaggregated metrics are processed and aggregated on the server side before being stored, making them more efficient for querying and visualization. These metrics are designed to give you quick insights into your application’s health without the overhead of processing large volumes of raw telemetry data.
 
+	# An e-commerce platform is planning to expand its services globally. The platform is hosted on Azure and utilizes various Azure services and third-party integrations.
+	  You need to design and create a robust monitoring solution that can scale with the expansion and provide insights into the performance of the platform across different regions.
+	  What should you do?
 
+	  * Deploy ^multiple Application Insights instances for each region and use Azure Monitor to aggregate the data.
 
 
 
