@@ -674,7 +674,7 @@
 		* Each ^container is a container for items.
 
 	# Which consistency level in Azure Cosmos DB ensures that reads never see uncommitted or partial writes?
-		* he ^Strong consistency level guarantees that reads are consistent with the last write acknowledged by the service.
+		* The ^Strong consistency level guarantees that reads are consistent with the last write acknowledged by the service.
 
 	# Scalability in Azure Cosmos DB
 		* The ^partition key determines how data is distributed across physical ^partitions in a container. 
@@ -1319,6 +1319,59 @@
 	# Azure Event Grid
 		* A ^subscription in Azure Event Grid defines which events from a topic are routed to a specific handler or endpoint.
 
+	# Microservices Architecture and Events
+	  * Microservices thrive on loose coupling, where services communicate without direct dependencies. 
+	  * ^Event ^Hubs acts as a centralized message broker that ingests massive volumes of events (think telemetry data, logs, or user actions) and distributes them to multiple consumers (your microservices).
+	  * Each microservice can subscribe to the event stream (via ^consumer ^groups) and process only the events it cares about, without needing to know who produced the events.
+
+	# Event Hubs Retention
+	  * Events are stored in Event Hubs for a configurable retention period (up to 7 days by default, or longer with features like Event Hubs Capture). 
+	  * This ensures microservices can catch up if they go offline temporarily, supporting independent deployability with ease.
+	  * It also supports ^at - ^least - ^once delivery, which is critical for microservices that need to ensure no event is missed, even if a service crashes or is redeployed.
+
+	# Microservices Architecture and Event Hub
+	  * Each microservice can have its own ^consumer ^group, which is like a dedicated view of the event stream. 
+	  * This means Service A (e.g., logging) and Service B (e.g., analytics) can read the same events independently at their own pace, without interfering with each other. 
+	  * This is key in microservices, where different services have different processing needs.
+
+	# Differences Between Event Hub and Event Grid
+	  * Event Grid, while great for event-driven architectures, isn’t optimized for the same ^high - ^throughput streaming scenarios as Event Hubs.
+
+	# Differences Between Event Hub and Event Grid
+	  * Event Grid uses a ^push - based model, where events are immediately routed to ^subscribers (e.g., Azure Functions, Logic Apps, or webhooks) based on event types. This is great for reactive, low-volume scenarios (e.g., responding to a file upload in Blob Storage).
+	  * Microservices often need a ^pull - based model, where they can control how and when they process events, especially at scale. Event Hubs supports this by storing events in a stream that services can read at their own pace.
+
+	# Differences Between Event Hub and Event Grid
+	  * Event ^Grid is designed for low-latency, discrete events (e.g., a single “order placed” event triggering a workflow).
+	  * Event ^Hubs on the other hand, is engineered for massive event ingestion—think millions of events per second from thousands of producers, which is common in microservices handling telemetry or transactional data.
+
+	# Differences Between Event Hub and Event Grid
+	  * Event ^Hubs retains events, allowing microservices to catch up later, which is critical for independent scaling and deployment.
+	  * Event ^Grid doesn’t store events; it routes them immediately and forgets them. If a microservice is offline or slow, it might miss events, which breaks the decoupled, resilient nature of microservices.
+
+	# Event Hub
+		* Namespaces, Event Hubs, and Partitions: Understand how ^namespaces group Event Hubs, and how ^partitions enable parallel processing.
+		* Consumer Groups: Know how they allow multiple services to read the same stream independently.
+		* Event Hubs Capture: Saves events to Blob Storage or Data Lake for long-term storage or replay.
+		* Throughput Units (TUs): Control scalability and cost; auto-inflate can dynamically adjust TUs.
+		* SDK Usage: Be familiar with sending and receiving events using the .NET SDK (e.g., EventHubProducerClient and EventProcessorClient).
+		* Comparison with Event Grid: Event Hubs is for high-throughput streaming; Event Grid is for reactive, event-driven routing.
+
+	# Event Hub
+		* Namespaces, Event Hubs, and Partitions: Understand how namespaces group Event Hubs, and how partitions enable parallel processing.
+		* ^Consumer ^Groups: Know how they allow multiple services to read the same stream independently.
+		* Event Hubs Capture: Saves events to Blob Storage or Data Lake for long-term storage or replay.
+		* Throughput Units (TUs): Control scalability and cost; auto-inflate can dynamically adjust TUs.
+		* SDK Usage: Be familiar with sending and receiving events using the .NET SDK (e.g., EventHubProducerClient and EventProcessorClient).
+		* Comparison with Event Grid: Event Hubs is for high-throughput streaming; Event Grid is for reactive, event-driven routing.
+
+	# Event Hub
+		* Namespaces, Event Hubs, and Partitions: Understand how namespaces group Event Hubs, and how partitions enable parallel processing.
+		* Consumer Groups: Know how they allow multiple services to read the same stream independently.
+		* Event Hubs Capture: Saves events to Blob Storage or Data Lake for long-term storage or replay.
+		* Throughput Units (TUs): Control scalability and cost; auto-inflate can dynamically adjust TUs.
+		* SDK Usage: Be familiar with sending and receiving events using the .NET SDK (e.g., EventHubProducerClient and ^EventProcessorClient).
+		* Comparison with Event Grid: Event Hubs is for high-throughput streaming; Event Grid is for reactive, event-driven routing.
 
 
 
